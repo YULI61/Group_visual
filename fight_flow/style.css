@@ -1,0 +1,86 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+  }
+  #map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  #line-chart {
+    width: 100%;
+    height: 100%;
+  }
+
+  #stats-chart {
+    position: absolute;
+    bottom: 20px;        
+    left: 20px;          
+    width: 40%;        
+    height: 400px;      
+    z-index: 10;         
+  }
+  
+  #timeline-controls {
+    position: absolute;
+    right: 30px;
+    bottom: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #year-slider {
+    width: 200px;
+  }
+  
+  #play-btn {
+    background: none;
+    border: 0px solid white;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  #year-overlay {
+    position: absolute;
+    bottom: 80px;
+    right: 50px;
+    font-size: 120px;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  #chart-header {
+    position: absolute;
+    bottom: 345px;
+    left: 450px;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+  }
+  
+  #toggle-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: white;
+  }
+  
