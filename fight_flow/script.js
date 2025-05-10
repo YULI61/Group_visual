@@ -384,15 +384,24 @@ function startBarRace() {
 }
 
 function updateBarChart(year) {
-    if (!barChart) return;
+  if (!barChart) return;
+
+  if (showTotal) {
+    barChart.setOption({
+      series: [{
+        markLine: {
+          data: [{ xAxis: String(year) }]
+        }
+      }]
+    });
+  } else {
     barChart.setOption({
       dataset: {
         source: formattedData.filter(d => d[1] === parseInt(year))
-      },
+      }
     });
+  }
 }
-  
-
 
 
 let totalByYear = {};
@@ -429,6 +438,19 @@ function renderLineChart() {
     const years = Object.keys(totalByYear);
     const values = years.map(year => totalByYear[year]);
   
+    let currentMarkLine = {
+      symbol: 'none',
+      label: {
+        show: false
+      },
+      lineStyle: {
+        color: 'rgba(255,255,255,0.5)',
+        type: 'dashed',
+        width: 2
+      },
+      data: [{ xAxis: '2002' }]
+    };
+
     const option = {
       title: {
         text: 'Total Visitors Over Time (000s)',
@@ -502,7 +524,8 @@ function renderLineChart() {
         },
         areaStyle: {
           color: 'rgba(111, 168, 220, 0.2)'
-        }
+        },
+        markLine: currentMarkLine
       }],
       backgroundColor: 'transparent'
     };
