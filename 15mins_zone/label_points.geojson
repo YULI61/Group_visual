@@ -1,0 +1,2665 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08033638747089622,
+          51.514470795401586
+        ]
+      },
+      "properties": {
+        "name": "30 St Mary Axe",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Modern landmarks",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14077198752347053,
+          51.469432995367164
+        ]
+      },
+      "properties": {
+        "name": "575 Wandsworth Road",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17821808750340942,
+          51.531996595413325
+        ]
+      },
+      "properties": {
+        "name": "Abbey Road Studios",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Historical landmarks, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12319198749197509,
+          51.510238695397824
+        ]
+      },
+      "properties": {
+        "name": "Adelphi Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12857578749636456,
+          51.506737795395146
+        ]
+      },
+      "properties": {
+        "name": "Admiralty Arch",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11882678748842895,
+          51.51305539539998
+        ]
+      },
+      "properties": {
+        "name": "Aldwych Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12782918749236938,
+          51.51302439539984
+        ]
+      },
+      "properties": {
+        "name": "Ambassadors",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13344128749566986,
+          51.51156609539866
+        ]
+      },
+      "properties": {
+        "name": "Apollo Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14256248750897674,
+          51.495582795386625
+        ]
+      },
+      "properties": {
+        "name": "Apollo Victoria Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15171238750836558,
+          51.50348779539238
+        ]
+      },
+      "properties": {
+        "name": "Apsley House",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Historical landmarks, Museums, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12753618749278123,
+          51.51209929539916
+        ]
+      },
+      "properties": {
+        "name": "Arts Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11362858749097762,
+          51.50482099539393
+        ]
+      },
+      "properties": {
+        "name": "BFI IMAX",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Modern landmarks, Musical and theatre",
+        "BestSeason": "winter, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0885312874746627,
+          51.514094695401184
+        ]
+      },
+      "properties": {
+        "name": "Bank of England",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Museums",
+        "BestSeason": "winter, spring",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12591618749646727,
+          51.50457729539355
+        ]
+      },
+      "properties": {
+        "name": "Banqueting House",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09393338747362259,
+          51.51988139540541
+        ]
+      },
+      "properties": {
+        "name": "Barbican Centre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Art galleries, Musical and theatre, Modern landmarks",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12457208749814365,
+          51.5007041953907
+        ]
+      },
+      "properties": {
+        "name": "Big Ben",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.077318587475666,
+          51.50409639539392
+        ]
+      },
+      "properties": {
+        "name": "Bridge Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12770868748241457,
+          51.530002195412486
+        ]
+      },
+      "properties": {
+        "name": "British Library",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12688998748829888,
+          51.51930069540453
+        ]
+      },
+      "properties": {
+        "name": "British Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.052863387466565964,
+          51.50164179539244
+        ]
+      },
+      "properties": {
+        "name": "Brunel Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14265838750595455,
+          51.500834195390524
+        ]
+      },
+      "properties": {
+        "name": "Buckingham Palace",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Royal family and palaces, Historical landmarks",
+        "BestSeason": "summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14020018750011498,
+          51.50900529539666
+        ]
+      },
+      "properties": {
+        "name": "Burlington Arcade",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Shopping districts, Historical landmarks",
+        "BestSeason": "winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12655388749146423,
+          51.51362249540029
+        ]
+      },
+      "properties": {
+        "name": "Cambridge Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14719488748373466,
+          51.5423780954215
+        ]
+      },
+      "properties": {
+        "name": "Camden Market",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Shopping districts, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1163231874811869,
+          51.52359359540788
+        ]
+      },
+      "properties": {
+        "name": "Charles Dickens Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.16336698752465245,
+          51.484301995377905
+        ]
+      },
+      "properties": {
+        "name": "Chelsea Physic Garden",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1384355875022733,
+          51.50398319539295
+        ]
+      },
+      "properties": {
+        "name": "Clarence House",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Royal family and palaces, Historical landmarks",
+        "BestSeason": "summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12274098749076329,
+          51.51197829539914
+        ]
+      },
+      "properties": {
+        "name": "Covent Garden Market",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Shopping districts, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13398828749704522,
+          51.50961659539721
+        ]
+      },
+      "properties": {
+        "name": "Criterion",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.07584178747239949,
+          51.50858639539727
+        ]
+      },
+      "properties": {
+        "name": "Crown Jewels",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.20017378753174803,
+          51.49988749538903
+        ]
+      },
+      "properties": {
+        "name": "Design Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12974038749092945,
+          51.51692139540272
+        ]
+      },
+      "properties": {
+        "name": "Dominion Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11973528748936138,
+          51.51213639539926
+        ]
+      },
+      "properties": {
+        "name": "Duchess Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12733098749379687,
+          51.51020759539775
+        ]
+      },
+      "properties": {
+        "name": "Duke of York's",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08634438751368696,
+          51.4459167953506
+        ]
+      },
+      "properties": {
+        "name": "Dulwich Picture Gallery",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Historical landmarks",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17919798748834165,
+          51.558691995433335
+        ]
+      },
+      "properties": {
+        "name": "Fenton House",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Museums",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11997488749953743,
+          51.494895195386434
+        ]
+      },
+      "properties": {
+        "name": "Garden Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Park and gardens, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12786678749414945,
+          51.51000409539759
+        ]
+      },
+      "properties": {
+        "name": "Garrick",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13310688749533506,
+          51.5118893953989
+        ]
+      },
+      "properties": {
+        "name": "Gielgud Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09030548747963277,
+          51.50691619539582
+        ]
+      },
+      "properties": {
+        "name": "Golden Hinde",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09193028747510626,
+          51.515856495402446
+        ]
+      },
+      "properties": {
+        "name": "Guildhall",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09140378747505327,
+          51.515557795402245
+        ]
+      },
+      "properties": {
+        "name": "Guildhall Art Gallery",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Historical landmarks",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14588418750030419,
+          51.512942095399524
+        ]
+      },
+      "properties": {
+        "name": "Handel & Hendrix",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1316298874961803,
+          51.50933649539704
+        ]
+      },
+      "properties": {
+        "name": "Harold Pinter Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.16300688751578343,
+          51.49924479538905
+        ]
+      },
+      "properties": {
+        "name": "Harrods",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Shopping districts, Modern landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14658648746953667,
+          51.566334295439454
+        ]
+      },
+      "properties": {
+        "name": "Highgate Cemetery",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13199648749703938,
+          51.50813779539614
+        ]
+      },
+      "properties": {
+        "name": "His Majesty's Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1270426874968456,
+          51.504770695393695
+        ]
+      },
+      "properties": {
+        "name": "Horse Guards",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "summer",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.16305178751104382,
+          51.50741469539515
+        ]
+      },
+      "properties": {
+        "name": "Hyde Park",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12925218749929987,
+          51.50221439539176
+        ]
+      },
+      "properties": {
+        "name": "IWM Churchill War Rooms",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08128018747594669,
+          51.50654129539568
+        ]
+      },
+      "properties": {
+        "name": "IWM HMS Belfast",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10835298749384026,
+          51.49600799538744
+        ]
+      },
+      "properties": {
+        "name": "Imperial War Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12700398749961125,
+          51.50000399539014
+        ]
+      },
+      "properties": {
+        "name": "Jewel Tower",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1880543875233845,
+          51.505088495393075
+        ]
+      },
+      "properties": {
+        "name": "Kensington Palace",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Royal family and palaces, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.16762498747590313,
+          51.57132599544294
+        ]
+      },
+      "properties": {
+        "name": "Kenwood House",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Art galleries",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13009258749435776,
+          51.51130929539851
+        ]
+      },
+      "properties": {
+        "name": "Leicester Square Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.20307748753377036,
+          51.49861339538803
+        ]
+      },
+      "properties": {
+        "name": "Leighton House Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Art galleries, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11859288749429801,
+          51.50283539539237
+        ]
+      },
+      "properties": {
+        "name": "London Aquarium",
+        "type": "other",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08826408747905864,
+          51.50638779539545
+        ]
+      },
+      "properties": {
+        "name": "London Bridge Experience",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12032298747673018,
+          51.534220995415765
+        ]
+      },
+      "properties": {
+        "name": "London Canal Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums",
+        "BestSeason": "spring, summer",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1262120874934281,
+          51.51000549539759
+        ]
+      },
+      "properties": {
+        "name": "London Coliseum",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11967648749447199,
+          51.50334159539275
+        ]
+      },
+      "properties": {
+        "name": "London Eye",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09063848747652069,
+          51.512483995399954
+        ]
+      },
+      "properties": {
+        "name": "London Mithraeum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.02387218745063159,
+          51.507594195397274
+        ]
+      },
+      "properties": {
+        "name": "London Museum Docklands",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14017378749687853,
+          51.5145337954008
+        ]
+      },
+      "properties": {
+        "name": "London Palladium",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12126678749011569,
+          51.51198589539914
+        ]
+      },
+      "properties": {
+        "name": "London Transport Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15523718749138116,
+          51.53530209541612
+        ]
+      },
+      "properties": {
+        "name": "London Zoo",
+        "type": "other",
+        "Region": "London",
+        "Tags": "Museums, Park and gardens, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12005728748988355,
+          51.51148049539876
+        ]
+      },
+      "properties": {
+        "name": "Lyceum Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13375098749593461,
+          51.5113431953985
+        ]
+      },
+      "properties": {
+        "name": "Lyric Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15477678749844087,
+          51.522822395406784
+        ]
+      },
+      "properties": {
+        "name": "Madame Tussauds",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "summer, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1589365875058839,
+          51.513175795399526
+        ]
+      },
+      "properties": {
+        "name": "Marble Arch",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Modern landmarks",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.07655298747575652,
+          51.50337899539337
+        ]
+      },
+      "properties": {
+        "name": "Monument",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0762709874591412,
+          51.53155599541437
+        ]
+      },
+      "properties": {
+        "name": "Museum of the Home",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1603659875222174,
+          51.486224995379395
+        ]
+      },
+      "properties": {
+        "name": "National Army Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1287521874951848,
+          51.50888879539676
+        ]
+      },
+      "properties": {
+        "name": "National Gallery",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Museums, Historical landmarks",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12821208749470728,
+          51.50930419539706
+        ]
+      },
+      "properties": {
+        "name": "National Portrait Gallery",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Museums",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11400478748985136,
+          51.50702829539556
+        ]
+      },
+      "properties": {
+        "name": "National Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17602218752311674,
+          51.49645519538681
+        ]
+      },
+      "properties": {
+        "name": "Natural History Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12742018749330797,
+          51.51111079539841
+        ]
+      },
+      "properties": {
+        "name": "Noel Coward Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11939448748904416,
+          51.51242739539951
+        ]
+      },
+      "properties": {
+        "name": "Novello",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12978858749317776,
+          51.51310479539987
+        ]
+      },
+      "properties": {
+        "name": "Palace Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12456618749890981,
+          51.49938719538972
+        ]
+      },
+      "properties": {
+        "name": "Palace of Westminster",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Royal family and palaces, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12682598749917182,
+          51.5006258953906
+        ]
+      },
+      "properties": {
+        "name": "Parliament Square",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1293568874921694,
+          51.514509395400935
+        ]
+      },
+      "properties": {
+        "name": "Phoenix Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1354347874968917,
+          51.51096429539819
+        ]
+      },
+      "properties": {
+        "name": "Piccadilly Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12363268749407616,
+          51.50697049539537
+        ]
+      },
+      "properties": {
+        "name": "Playhouse Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1616395874920059,
+          51.53906119541883
+        ]
+      },
+      "properties": {
+        "name": "Primrose Hill",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13095098749338152,
+          51.51362619540023
+        ]
+      },
+      "properties": {
+        "name": "Prince Edward Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15197408748532623,
+          51.5432478954221
+        ]
+      },
+      "properties": {
+        "name": "Roundhouse",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Modern landmarks",
+        "BestSeason": "summer, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1396974874997433,
+          51.509264195396845
+        ]
+      },
+      "properties": {
+        "name": "Royal Academy of Arts",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Art galleries, Museums",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1774099875210727,
+          51.50101469539017
+        ]
+      },
+      "properties": {
+        "name": "Royal Albert Hall",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12267898749011145,
+          51.51304599539994
+        ]
+      },
+      "properties": {
+        "name": "Royal Ballet and Opera Covent Garden",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Historical landmarks",
+        "BestSeason": "spring, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15634958751675682,
+          51.49257419538417
+        ]
+      },
+      "properties": {
+        "name": "Royal Court Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11306368748525496,
+          51.51419729540091
+        ]
+      },
+      "properties": {
+        "name": "Royal Courts of Justice",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11678458749177803,
+          51.505800095394605
+        ]
+      },
+      "properties": {
+        "name": "Royal Festival Hall",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Modern landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12250128749013046,
+          51.512884095399805
+        ]
+      },
+      "properties": {
+        "name": "Royal Opera House",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12088138749102588,
+          51.51014129539776
+        ]
+      },
+      "properties": {
+        "name": "Savoy Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17623068752266036,
+          51.49739709538751
+        ]
+      },
+      "properties": {
+        "name": "Science Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0970885874818659,
+          51.50812309539662
+        ]
+      },
+      "properties": {
+        "name": "Shakespeare's Globe",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11745248748907006,
+          51.510934295398414
+        ]
+      },
+      "properties": {
+        "name": "Somerset House",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Art galleries, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13282828749513176,
+          51.512028895399006
+        ]
+      },
+      "properties": {
+        "name": "Sondheim Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11647798749174403,
+          51.50563009539448
+        ]
+      },
+      "properties": {
+        "name": "Southbank Centre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre, Modern landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.06486398745995073,
+          51.52174599540722
+        ]
+      },
+      "properties": {
+        "name": "Spitalfields City Farm",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09940828747657464,
+          51.5188922954046
+        ]
+      },
+      "properties": {
+        "name": "St Bartholomew-The Great",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Church spirtual",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09843648747913988,
+          51.513784895400796
+        ]
+      },
+      "properties": {
+        "name": "St Paul's Cathedral",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Church spirtual",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13441968750102842,
+          51.50311349539233
+        ]
+      },
+      "properties": {
+        "name": "St. James's Park",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Royal family and palaces, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.050430987438065386,
+          51.54848499542735
+        ]
+      },
+      "properties": {
+        "name": "Sutton House",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Museums",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12758518750504277,
+          51.49114239538353
+        ]
+      },
+      "properties": {
+        "name": "Tate Britain",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Museums",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.09938618748326886,
+          51.50742919539606
+        ]
+      },
+      "properties": {
+        "name": "Tate Modern",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Art galleries, Museums, Modern landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0941289874736612,
+          51.51995899540547
+        ]
+      },
+      "properties": {
+        "name": "The Barbican Centre",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Modern landmarks, Musical and theatre",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11770018748877369,
+          51.51162439539892
+        ]
+      },
+      "properties": {
+        "name": "The Courtauld Gallery",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Art galleries, Museums",
+        "BestSeason": "spring, autumn",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11766968749554915,
+          51.500007195390275
+        ]
+      },
+      "properties": {
+        "name": "The Florence Nightingale Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.11921888749470758,
+          51.50260019539219
+        ]
+      },
+      "properties": {
+        "name": "The London Dungeon",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08594468747588144,
+          51.51010189539824
+        ]
+      },
+      "properties": {
+        "name": "The Monument",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10927158749072921,
+          51.50200899539189
+        ]
+      },
+      "properties": {
+        "name": "The Old Vic",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1553994874944527,
+          51.53014509541224
+        ]
+      },
+      "properties": {
+        "name": "The Regent's Park",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Historical landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1571101875200915,
+          51.48742879538035
+        ]
+      },
+      "properties": {
+        "name": "The Royal Hospital Chelsea",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14424958750776753,
+          51.4989188953891
+        ]
+      },
+      "properties": {
+        "name": "The Royal Mews",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.08644718747946606,
+          51.50434839539396
+        ]
+      },
+      "properties": {
+        "name": "The Shard",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Modern landmarks",
+        "BestSeason": "summer, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.15847428749951617,
+          51.52376289540744
+        ]
+      },
+      "properties": {
+        "name": "The Sherlock Holmes Museum and shop",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12257668749155268,
+          51.51050059539802
+        ]
+      },
+      "properties": {
+        "name": "The Vaudeville Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1530443875007801,
+          51.51750569540282
+        ]
+      },
+      "properties": {
+        "name": "The Wallace Collection",
+        "type": "gallery",
+        "Region": "London",
+        "Tags": "Art galleries, Museums, Historical landmarks",
+        "BestSeason": "spring,summer,autumn,winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.10731728748913681,
+          51.503279595392854
+        ]
+      },
+      "properties": {
+        "name": "The Young Vic",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13127058749643256,
+          51.508634595396515
+        ]
+      },
+      "properties": {
+        "name": "Theatre Royal Haymarket",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12020388748906406,
+          51.51299479539991
+        ]
+      },
+      "properties": {
+        "name": "Theatre Royal, Drury Lane",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0753661874739911,
+          51.505516595395
+        ]
+      },
+      "properties": {
+        "name": "Tower Bridge",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Modern landmarks",
+        "BestSeason": "summer, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.07628638747285689,
+          51.50813309539693
+        ]
+      },
+      "properties": {
+        "name": "Tower of London",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12805258749538287,
+          51.5080281953961
+        ]
+      },
+      "properties": {
+        "name": "Trafalgar Square",
+        "type": "attraction",
+        "Region": "London",
+        "Tags": "Historical landmarks, Modern landmarks",
+        "BestSeason": "summer, winter",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12763058749604864,
+          51.506573095395034
+        ]
+      },
+      "properties": {
+        "name": "Trafalgar Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1722239875211689,
+          51.4969399953872
+        ]
+      },
+      "properties": {
+        "name": "V&A South Kensington",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Art galleries",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.053308987450885324,
+          51.52871299541257
+        ]
+      },
+      "properties": {
+        "name": "Vagina Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "autumn, winter",
+        "Popular": 1,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.14249298750819622,
+          51.496871395387586
+        ]
+      },
+      "properties": {
+        "name": "Victoria Palace Theatre",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12487428750075534,
+          51.49645939538753
+        ]
+      },
+      "properties": {
+        "name": "Victoria Tower Gardens",
+        "type": "park",
+        "Region": "London",
+        "Tags": "Park and gardens, Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.17211518752113794,
+          51.496911095387205
+        ]
+      },
+      "properties": {
+        "name": "Victoria and Albert Museum",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Art galleries",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.13401948748751988,
+          51.52597389540942
+        ]
+      },
+      "properties": {
+        "name": "Wellcome Collection",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Modern landmarks",
+        "BestSeason": "winter, spring",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1508183875085294,
+          51.50253579539167
+        ]
+      },
+      "properties": {
+        "name": "Wellington Arch",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Royal family and palaces",
+        "BestSeason": "spring, autumn",
+        "Popular": 2,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12739068750013186,
+          51.49940129538968
+        ]
+      },
+      "properties": {
+        "name": "Westminster Abbey",
+        "type": "historic",
+        "Region": "London",
+        "Tags": "Historical landmarks, Church spirtual",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "Yes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1395186875075108,
+          51.49581909538685
+        ]
+      },
+      "properties": {
+        "name": "Westminster Cathedral",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Church spirtual, Historical landmarks",
+        "BestSeason": "spring, autumn",
+        "Popular": 3,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.12804128749358157,
+          51.51110519539839
+        ]
+      },
+      "properties": {
+        "name": "Wyndham's",
+        "type": "amenity",
+        "Region": "London",
+        "Tags": "Musical and theatre",
+        "BestSeason": "autumn, winter",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.05518198745224365,
+          51.527773995411835
+        ]
+      },
+      "properties": {
+        "name": "Young V&A",
+        "type": "museum",
+        "Region": "London",
+        "Tags": "Museums, Art galleries, Modern landmarks",
+        "BestSeason": "spring, summer",
+        "Popular": 2,
+        "Charge": "No"
+      }
+    }
+  ]
+}
