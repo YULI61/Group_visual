@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>UK Attractions Map (Layer Version)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 外部资源引入 -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        /* 基础地图样式 */
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* 控制面板样式 */
+        #panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-family: sans-serif;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        /* 图例样式 */
+        #legend h4 {
+            margin: 5px 0 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        .legend-color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        /* 游客数量面板样式 */
+        #topVisitorsPanel {
+            position: absolute;
+            bottom: 80px;
+            left: 20px;
+            width: 500px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* 滑块样式 */
+        #yearSlider {
+            width: 50%;
+            background-color: #ddd;
+            height: 8px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        #yearSlider::-webkit-slider-thumb {
+            background-color: #00B8A9;
+        }
+
+        /* 图表容器 */
+        #chartContainer {
+            width: 100%;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 地图容器 -->
+    <div id="map"></div>
+    
+    <!-- 左侧控制面板 -->
+    <div id="panel">
+        <h3> Attraction Filter</h3>
+        <label for="categoryFilter"><strong>Filter by Category</strong></label>
+        <select id="categoryFilter">
+            <option value="All">All Categories</option>
+            <option value="Historic Buildings & Sites">Historic Buildings & Sites</option>
+            <option value="Museums & Galleries">Museums & Galleries</option>
+            <option value="Natural & Outdoor Attractions">Natural & Outdoor</option>
+            <option value="Transport & Industrial Heritage">Transport & Industrial</option>
+            <option value="Industrial & Craft Experiences">Industrial & Craft</option>
+            <option value="Modern Entertainment & Technology">Modern Entertainment</option>
+            <option value="Other & Miscellaneous">Other</option>
+        </select>
+        
+        <!-- 图例 -->
+        <div id="legend">
+            <h3> Attraction Categories</h3>
+            <div id="legend-content"></div>
+        </div>
+    </div>
+
+    <!-- 底部游客数量面板 -->
+    <div id="topVisitorsPanel">
+        <h4> Top Attractions（Visitors by Year）</h4>
+        <label for="yearSlider"><strong>Year:</strong><span id="yearLabel">2023</span></label>
+        <input type="range" id="yearSlider" min="2018" max="2023" value="2023" step="1" />
+        <div id="chartContainer">
+            <canvas id="visitorsChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // 初始化地图配置
+        mapboxgl.accessToken = 'pk.eyJ1Ijoia3VuZGk3Nzg4IiwiYSI6ImNtNmkzejF2cjAzaXQyaXM5a290bWZlb3YifQ.m5Puy892HwG64qMAoEd7sA';
+        
+        // 创建地图实例
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/kundi7788/cm7sjozi3006a01sc42097gk7',
+            center: [-4, 53],  // 初始中心点坐标
+            zoom: 5.8          // 初始缩放级别
+        });
+
+//        // 颜色映射配置（类别 -> 颜色）
+//        const colorMapping = {
+//            'Historic Buildings & Sites': '#F75A5A',
+//            'Museums & Galleries': '#FFA955',
+//            'Natural & Outdoor Attractions': '#6DE1D2',
+//            'Transport & Industrial Heritage': '#A19AD3',
+//            'Industrial & Craft Experiences': '#00B8A9',
+//            'Modern Entertainment & Technology': '#A8D8EA',
+//            'Other & Miscellaneous': '#FFDE7D'
+//        };
+      // 同色系颜色映射配置（类别 -> 颜色）
+        const colorMapping = {
+            'Historic Buildings & Sites': '#8466C6',
+            'Museums & Galleries': '#FFD700',
+            'Natural & Outdoor Attractions': '#F29B7A',
+            'Transport & Industrial Heritage': '#E06AC7',
+            'Industrial & Craft Experiences': '#66D1C3',
+            'Modern Entertainment & Technology': '#A8D8EA',
+            'Other & Miscellaneous': '#B0B9B2'
+        };
+
+        // 全局变量
+        let allAttractions = [];     // 存储所有景点数据
+        let hoveredPointId = null;   // 当前悬停的要素ID
+        let visitorsChart;           // Chart.js 实例
+        //  popup 实例
+        let hoverPopup = null; // 用于跟踪当前悬停的弹出窗
+
+        // 初始化图表
+        function initChart() {
+            visitorsChart = new Chart(document.getElementById('visitorsChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Visitors',
+                        data: [],
+                        backgroundColor: '#00B8A9',
+                        borderColor: '#00B8A9',
+                        borderWidth: 1
+                    }]
+                },
+                options: { /* 配置选项保持不变 */ }
+            });
+        }
+
+        // 更新Top游客图表
+        function updateTopVisitorsChart(year = '2023', topN = 10) {
+            const field = `Visitors ${year}`;
+            // 处理数据并更新图表
+            const sorted = allAttractions
+                .map(f => ({
+                    name: f.properties.Attraction,
+                    count: parseInt(f.properties[field]) || 0
+                }))
+                .filter(f => f.count > 0)
+                .sort((a, b) => b.count - a.count)
+                .slice(0, topN);
+
+            visitorsChart.data.labels = sorted.map(item => item.name);
+            visitorsChart.data.datasets[0].data = sorted.map(item => item.count);
+            visitorsChart.update();
+        }
+
+        // 地图加载完成后的初始化
+        map.on('load', () => {
+            // 添加数据源
+            map.addSource('attractions', {
+                type: 'geojson',
+                data: 'data/attractions_all.geojson',
+                generateId: true
+            });
+            
+            // 添加区域数据源
+            map.addSource('regions', {
+                type: 'geojson',
+                data: 'data/regions_with_top10.geojson' // 替换为你的数据路径
+            });
+            
+            // 添加边界线图层
+            map.addLayer({
+                id: 'regions-layer-border',
+                type: 'line',
+                source: 'regions',
+                paint: {
+                    'line-color': '#999999',  // 设置边界颜色
+                    'line-width': 0.5,// 设置边界线的宽度
+                     'line-opacity': 0.5  // 设置边界线的透明度
+                }
+            });
+            // 创建景点图层
+            map.addLayer({
+                id: 'attractions-layer',
+                type: 'circle',
+                source: 'attractions',
+                paint: {
+                       'circle-radius': [
+    'case',
+    ['!', ['has', 'Visitors 2023']], 3,  // 如果没有Visitors 2023字段，则默认半径为3
+//    ['<', ['to-number', ['get', 'Visitors 2023']], 500], 2,  // 如果游客数量小于500，则半径为3
+    ['<', ['to-number', ['get', 'Visitors 2023']], 1000], 2,  // 如果游客数量小于1000，则半径为5
+//    ['<', ['to-number', ['get', 'Visitors 2023']], 5000], 4,  // 如果游客数量小于5000，则半径为7
+    ['<', ['to-number', ['get', 'Visitors 2023']], 10000], 3,  // 如果游客数量小于10000，则半径为9
+    ['<', ['to-number', ['get', 'Visitors 2023']], 50000], 4,  // 如果游客数量小于50000，则半径为12
+    ['<', ['to-number', ['get', 'Visitors 2023']], 100000], 8,  // 如果游客数量小于100000，则半径为15
+    ['<', ['to-number', ['get', 'Visitors 2023']], 500000], 12,  // 如果游客数量小于500000，则半径为18
+    ['<', ['to-number', ['get', 'Visitors 2023']], 1000000], 15,  // 如果游客数量小于500000，则半径为18
+    ['<', ['to-number', ['get', 'Visitors 2023']], 1500000], 20,  // 如果游客数量小于500000，
+    ['<', ['to-number', ['get', 'Visitors 2023']], 2000000], 25,  // 如果游客数量小于500000，
+    ['>=', ['to-number', ['get', 'Visitors 2023']], 4000000], 30,  // 如果游客数量大于5000000，则半径为20
+    2  // 默认半径为4
+],
+//                    'circle-radius': [
+//                        'case',
+//                        ['boolean', ['feature-state', 'hover'], false],
+//                        7,  // 悬停时半径
+//                        4   // 默认半径
+//                    ],
+                    'circle-opacity': 0.7,
+                    'circle-color': [
+                        'match',
+                        ['get', 'Main_Category'],
+                        ...Object.entries(colorMapping).flat(),
+                        '#cccccc'  // 默认颜色
+                    ]
+                }
+            });
+
+            // 初始化图例
+            const legendContent = document.getElementById('legend-content');
+            Object.entries(colorMapping).forEach(([category, color]) => {
+                const legendItem = document.createElement('div');
+                legendItem.classList.add('legend-item');
+                legendItem.innerHTML = `
+                    <div class="legend-color-box" style="background-color: ${color};"></div>
+                    <span>${category}</span>
+                `;
+                legendContent.appendChild(legendItem);
+            });
+
+            // 加载景点数据
+            fetch('data/attractions_all.geojson')
+                .then(res => res.json())
+                .then(data => {
+                    allAttractions = data.features;
+                    updateTopVisitorsChart('2023');
+                });
+        });
+
+        // 事件监听器
+        function setupEventListeners() {
+            // 类别筛选器变化事件
+            document.getElementById('categoryFilter').addEventListener('change', function(e) {
+                map.setFilter('attractions-layer', 
+                    e.target.value === 'All' ? null : 
+                    ['==', ['get', 'Main_Category'], e.target.value]
+                );
+            });
+
+            // 年份滑块变化事件
+            document.getElementById('yearSlider').addEventListener('input', (e) => {
+                const selectedYear = e.target.value;
+                document.getElementById('yearLabel').textContent = selectedYear;
+                updateTopVisitorsChart(selectedYear);
+            });
+
+            // 地图要素交互事件
+            map.on('mousemove', 'attractions-layer', handleFeatureHover);
+            map.on('mouseleave', 'attractions-layer', clearFeatureHover);
+            map.on('click', 'attractions-layer', showFeaturePopup);
+        }
+
+
+
+// 修改后的要素悬停处理函数
+function handleFeatureHover(e) {
+    if (e.features.length > 0) {
+        // 移除之前的悬停状态
+        if (hoveredPointId !== null) {
+            map.setFeatureState(
+                { source: 'attractions', id: hoveredPointId },
+                { hover: false }
+            );
+        }
+
+        // 更新当前悬停要素ID
+        hoveredPointId = e.features[0].id;
+        map.setFeatureState(
+            { source: 'attractions', id: hoveredPointId },
+            { hover: true }
+        );
+
+        // 移除之前的弹出窗
+        if (hoverPopup) {
+            hoverPopup.remove();
+            hoverPopup = null;
+        }
+
+        // 创建新的弹出窗
+        const feature = e.features[0];
+        hoverPopup = new mapboxgl.Popup({
+            closeButton: false,    // 不显示关闭按钮
+            closeOnClick: false     // 点击不关闭
+        })
+        .setLngLat(e.lngLat)
+        .setHTML(`
+            <div style="font-size: 12px">
+                <strong>${feature.properties.Attraction || "Unknown"}</strong><br>
+                Category: ${feature.properties.Main_Category || "N/A"}<br>
+                Visitors: ${feature.properties["Visitors 2023"]?.toLocaleString() || "N/A"}
+            </div>
+        `)
+        .addTo(map);
+    }
+}
+
+// 修改后的清除悬停函数
+function clearFeatureHover() {
+    if (hoveredPointId !== null) {
+        map.setFeatureState(
+            { source: 'attractions', id: hoveredPointId },
+            { hover: false }
+        );
+        hoveredPointId = null;
+    }
+    
+    // 移除弹出窗
+    if (hoverPopup) {
+        hoverPopup.remove();
+        hoverPopup = null;
+    }
+}
+
+        // 初始化应用程序
+        function initApp() {
+            initChart();
+            setupEventListeners();
+        }
+
+        // 启动应用
+        initApp();
+    </script>
+</body>
+</html>
