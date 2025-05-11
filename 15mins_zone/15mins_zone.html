@@ -38,12 +38,15 @@
       padding: 8px 16px;
       border-radius: 8px;
       display: flex;
-      gap: 12px;
+      flex-wrap: wrap; /* ← 允许换行 */
+      gap: 12px 16px;  /* 行间距和列间距 */
       font-size: 13px;
       font-family: sans-serif;
       box-shadow: 0 0 4px rgba(0,0,0,0.2);
-      align-items: center;
+      max-width: 1000px; /* 可选限制宽度 */
+      justify-content: center; /* 居中对齐 */
     }
+
 
     .legend div {
       display: flex;
@@ -142,20 +145,22 @@
       <button id="mode-all" class="btn mr6">All Mode</button>
       <button id="mode-type" class="btn mr6">Type Mode</button>
       <select id="type-select" class="btn" style="display:none;">
-        <option value="museum">Museum</option>
-        <option value="historic">Historic</option>
-        <option value="attraction">Attraction</option>
-        <option value="amenity">Amenity</option>
+        <option value="Modern landmarks">Modern landmarks</option>
+        <option value="Museums">Museums</option>
+        <option value="Art galleries">Art galleries</option>
+        <option value="Historical landmarks">Historical landmarks</option>
+        <option value="Park and gardens">Park and gardens</option>
+        <option value="Musical and theatre">Musical and theatre</option>
+        <option value="Shopping districts">Shopping districts</option>
+        <option value="Royal family and palaces">Royal family and palaces</option>
+        <option value="Church spirtual">Church spirtual</option>
+        <option value="Mixed">Mixed</option>
       </select>
     </div>
+
       
           
     <div id="legend" class="legend">
-      <div><span style="background:#1f78b4"></span>Museum</div>
-      <div><span style="background:#33a02c"></span>Historic</div>
-      <div><span style="background:#e31a1c"></span>Attraction</div>
-      <div><span style="background:#ff7f00"></span>Amenity</div>
-      <div><span style="background:#6a3d9a"></span>Other</div>
     </div>
       
       
@@ -244,14 +249,37 @@
           // 加载景点 GeoJSON
           map.addSource('attractions', {
             type: 'geojson',
-            data: 'london_attractions_4326.geojson'
+            data: 'label_points.geojson'
           });
 
-          fetch('london_attractions_4326.geojson')
+          fetch('label_points.geojson')
             .then(res => res.json())
             .then(data => {
               attractionData = data;
             });          
+          
+        const typeColors = {
+          "Modern landmarks": "#1f78b4",
+          "Museums": "#33a02c",
+          "Art galleries": "#e31a1c",
+          "Historical landmarks": "#ff7f00",
+          "Park and gardens": "#6a3d9a",
+          "Musical and theatre": "#a6cee3",
+          "Shopping districts": "#b2df8a",
+          "Royal family and palaces": "#fb9a99",
+          "Church spirtual": "#fdbf6f",
+          "Mixed": "#8B4513"
+        };
+
+        const legendEl = document.getElementById('legend');
+        legendEl.innerHTML = ''; // 清空旧图例
+
+        Object.entries(typeColors).forEach(([name, color]) => {
+          const div = document.createElement('div');
+          div.innerHTML = `<span style="background:${color}"></span>${name}`;
+          legendEl.appendChild(div);
+        });
+
           
             map.addLayer({
               id: 'attraction-points',
@@ -260,13 +288,13 @@
               paint: {
                 'circle-radius': 5,
                 'circle-color': [
-                  'match',
-                  ['get', 'type'],
-                  'museum', '#1f78b4',
-                  'historic', '#33a02c',
-                  'attraction', '#e31a1c',
-                  'amenity', '#ff7f00',
-                  /* other */ '#6a3d9a'
+                  'case',
+                  ['in', ',', ['get', 'Tags']], '#8B4513', // 如果有逗号，说明是多标签
+                  ['match',
+                    ['get', 'Tags'],
+                    ...Object.entries(typeColors).flat(),
+                    '#cccccc' // 默认颜色
+                  ]
                 ],
                 'circle-stroke-width': 1,
                 'circle-stroke-color': '#ffffff'
@@ -311,7 +339,7 @@ map.on('mouseenter', 'attraction-points', (e) => {
     closeOnClick: false
   })
     .setLngLat(coordinates)
-    .setHTML(`<strong>${props.name}</strong><br/>Type: ${props.type}`)
+    .setHTML(`<strong>${props.name}</strong><br/>Tags: ${props.Tags}`)
     .addTo(map);
 
   map._hoverPopup = popup;
@@ -348,18 +376,21 @@ function setMode(newMode) {
   clearIsoMulti();
 
   if (mode === 'all') {
-    marker.remove();       // 隐藏
+    marker.remove();
+    map.getSource('attractions').setData(attractionData); // 恢复原始点
     getAllIsos();
   } else if (mode === 'type') {
-    marker.remove();       // 隐藏
+    marker.remove();
     const selectedType = document.getElementById('type-select').value;
     getIsosByType(selectedType);
   } else if (mode === 'single') {
+    map.getSource('attractions').setData(attractionData); // 恢复原始点
     if (lon && lat) {
-      marker.setLngLat([lon, lat]).addTo(map);  // 恢复显示
+      marker.setLngLat([lon, lat]).addTo(map);
     }
   }
 }
+
 
 
 
@@ -374,14 +405,28 @@ function updateModeButtons() {
 
 
         
-        
 async function getIsosByType(typeName) {
   if (!attractionData) {
     console.warn("attractionData not loaded yet");
     return;
   }
 
-  const filtered = attractionData.features.filter(f => f.properties.type === typeName);
+    const filtered = attractionData.features.filter(f => {
+      const tags = f.properties.Tags.split(',').map(t => t.trim().toLowerCase());
+
+      if (typeName === 'Mixed') {
+        return tags.length > 1; // 多个标签就算 Mixed
+      } else {
+        return tags.includes(typeName.toLowerCase());
+      }
+    });
+
+
+  // 更新图层数据（只展示匹配点）
+  map.getSource('attractions').setData({
+    type: 'FeatureCollection',
+    features: filtered
+  });
 
   const result = {
     type: 'FeatureCollection',
@@ -400,6 +445,15 @@ async function getIsosByType(typeName) {
   drawIsoMulti(result);
 }
 
+
+document.getElementById('type-select').addEventListener('change', () => {
+  if (mode === 'type') {
+    const selectedType = document.getElementById('type-select').value;
+    getIsosByType(selectedType);
+  }
+});
+
+        
 
         
 async function getAllIsos() {
