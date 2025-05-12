@@ -228,13 +228,33 @@ map.keyboard.disable();
 
 
 map.once('load', () => {
+  // 第一步：设置初始缩小视角
   map.jumpTo({ center: [0, 48], zoom: 0.1 });
 
+  // 第二步：启动放大动画
   map.easeTo({
     zoom: 3.6,
-    duration: 3000, 
+    duration: 3000,
     center: [0, 48]
   });
 
   loadData(); 
+
+  // 第三步：等待放大动画完成后再执行其他操作
+  setTimeout(() => {
+    rotateGlobe();  // ✅ 开始地球旋转    // ✅ 加载粒子与轨迹动画
+  }, 3200); // ⏳ 稍微多于 easeTo 动画的时间，确保执行顺序
 });
+
+
+function rotateGlobe() {
+  let bearing = 0;
+
+  function rotate() {
+    bearing = (bearing + 0.02) % 360; // 每帧旋转 0.05°
+    map.setBearing(bearing);
+    requestAnimationFrame(rotate);
+  }
+
+  rotate();
+}
