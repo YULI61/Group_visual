@@ -9,6 +9,12 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
   <style>
+   
+    html {
+      height: 100%;
+      margin: 0;
+    }   
+      
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -16,14 +22,20 @@
       height: 100vh;
     }
     .container {
-      display: flex;
+      height: 100%;
+        display: flex;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       height: 100vh;
+      overflow: hidden; 
     }
-
+      
+*, *::before, *::after {
+  box-sizing: border-box;
+}
     .left-panel {
+      height: 100%;
       flex: 0 0 60%;
       max-width: 60%;
       padding: 40px;
@@ -110,7 +122,8 @@
 
     /* 新内容区域：初始隐藏 */
     .new-content {
-      position: absolute;
+      flex-grow: 1;
+    position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
