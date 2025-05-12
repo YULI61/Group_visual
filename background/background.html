@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Preference Guess</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/patternomaly"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100vh;
+    }
+
+    .left-panel {
+      flex: 0 0 60%;
+      max-width: 60%;
+      padding: 40px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+        position: relative;
+    }
+
+    .right-panel {
+      flex: 0 0 40%;
+      max-width: 40%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center; 
+    }
+
+    canvas {
+      max-width: 80%;
+      margin-bottom: 20px;
+    }
+    #submit {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #666666;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+      
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .intro {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .question {
+      font-family: 'Merriweather', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #111;
+    }
+
+    .instruction {
+      font-size: 18px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #source {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #888;
+      font-style: italic;
+    }
+
+    /* 新旧文字切换动画 */
+    .slide-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+
+    .slide-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* 新内容区域：初始隐藏 */
+    .new-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* 你已有的样式继续保留： */
+      background-color: #e8f4f8;
+      border: 1px solid #a8d8ea;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.6s ease;
+      opacity: 0;
+      display: block;
+      width: 80%;         /* 可选：限制宽度 */
+      max-width: 800px;   /* 可选 */
+    }
+    .new-content.show {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+
+
+    .old-content.hide {
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: all 0.6s ease;
+      pointer-events: none;
+    }
+
+    .insight {
+      font-size: 17px;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .next-step {
+      font-size: 24px;
+/*      color: #1a73e8;*/
+      font-weight: 600;
+      margin-top: 30px;
+      font-family: 'Merriweather', serif;    
+    }
+
+      
+  </style>
+</head>
+<body>
+
+<div class="container">        
+  <div class="left-panel">
+      
+    <div class="old-content" id="oldContent">   
+        <h1>Tourism Service Improvement</h1>
+
+        <p class="intro">
+          Now we know that the number of international tourists to the UK is showing consistent growth.
+          Traditional standardised tourism products no longer meet the expectations of modern tourists,
+          and today's travellers value experiential and bespoke travel more than traditional mass tourism.
+          The tourism service needs to be upgraded with innovation.
+        </p>
+
+        <p class="question">
+          What percentage of people do you think prefer tailor-made travel?
+        </p>
+
+        <p class="instruction">
+          🖱️ <span style="color: #A8D8EA;">
+            Click either bar to adjust your guess. Then submit to see the research result.
+          </span>
+        </p>
+     </div>   
+      
+    <div class="new-content" id="newContent">
+      <p class="insight">
+        Over <strong>65% of travelers</strong> now prefer tailor-made travel services.
+        However, many face information overload from social media and travel websites while planning their trips.
+      </p>
+
+      <p class="insight">
+        Travelers seek <strong>personalized solutions</strong> that align with their unique interests — not just what's trending.
+      </p>
+
+      <p class="next-step">
+         Let’s take a look at how attractions are distributed. ↗　
+      </p>
+    </div>
+     
+      
+  </div>
+       
+  <div class="right-panel">
+    <canvas id="myChart" height="300"></canvas>
+    <button id="submit">Submit Answer</button>
+    <p id="source" style="display: none;">Source: <a href="https://www.longdom.org/open-access/personalised-travel-services-an-exploratory-study-in-singapore-context-8330.html" target="_blank" style="color: #888; text-decoration: underline;">
+    Journal of Tourism & Hospitality, Vol. 2(2), 2013</p>
+  </div>
+</div>
+        
+
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  let guess = 50;
+  let submitted = false;
+  const correct = 65;
+
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Tailor-made tour', 'Standard tour'],
+      datasets: [
+        {
+          label: 'Your Guess',
+          data: [guess, 100 - guess],
+          backgroundColor: ['#A8D8EA', '#A8D8EA'],
+          datalabels: {
+            display: true,
+            color: '#fff',
+            font: { weight: 'bold' },
+            formatter: v => v + '%'
+          },
+          order: -1,             
+          grouped: false,        
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: { enabled: false },
+        legend: { display: false },
+        datalabels: { display: true }
+      },
+    elements: {
+      bar: {
+        borderSkipped: false,    
+      }
+    },
+        
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          title: {
+            display: true,
+            text: '% of Travellers'
+          }
+        }
+      },
+      onClick: (e, elements) => {
+        if (submitted || elements.length === 0) return;
+        const index = elements[0].index;
+        if (index === 0) {
+          guess += 5;
+          if (guess > 100) guess = 0;
+        } else {
+          guess -= 5;
+          if (guess < 0) guess = 100;
+        }
+        chart.data.datasets[0].data = [guess, 100 - guess];
+        chart.update();
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+
+document.getElementById('submit').addEventListener('click', () => {
+  if (submitted) return;
+  submitted = true;
+
+  setTimeout(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+    setTimeout(() => {
+      const leftPanel = document.getElementById('oldContent'); 
+      const newContent = document.getElementById('newContent');
+      
+      leftPanel.classList.add('hide');
+      newContent.classList.add('show');
+    }, 800);
+  }, 200);
+
+    
+    
+  chart.data.datasets = [
+    {
+      label: 'Your Guess',
+      data: [guess, 100 - guess],
+      backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,0)'],
+      borderColor: ['#999', '#999'],
+      borderWidth: 1,
+      borderDash: [6, 4],
+      borderSkipped: false,
+      datalabels: { display: false },
+      grouped: false
+    },
+    {
+      label: 'Correct Answer',
+      data: [correct, 100 - correct],
+      backgroundColor: ['#A8D8EA', '#A8D8EA'],
+      borderColor: ['#666', '#999'],
+      borderWidth: 0,
+        datalabels: {
+          anchor: 'end',         // 锚点在柱子顶部
+          align: 'start',        // 对齐到顶部外
+          offset: -20,            // 可选，往上再偏移一些
+          color: '#000',
+          font: { size: 14, weight: 'bold' },
+          formatter: v => v + '%'
+        },
+      grouped: false
+    }
+  ];
+
+  chart.update();
+
+document.getElementById('source').style.display = 'block';
+    
+    
+});
+
+</script>
+
+</body>
+</html>
