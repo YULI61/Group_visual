@@ -10,12 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
   <style>
    
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* 取消滚动条 */
-}  
+    html {
+      height: 100%;
+      margin: 0;
+    }   
       
     body {
       margin: 0;
@@ -23,13 +21,15 @@ html, body {
       display: flex;
       height: 100vh;
     }
-.container {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-}
+    .container {
+      height: 100%;
+        display: flex;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100vh;
+      overflow: hidden; 
+    }
       
 *, *::before, *::after {
   box-sizing: border-box;
