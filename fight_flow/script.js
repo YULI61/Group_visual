@@ -268,6 +268,8 @@ playBtn.addEventListener("click", () => {
   }
 });
 
+document.getElementById('play-btn').click();
+
 
 let showTotal = false;
 
