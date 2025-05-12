@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>伦敦个性化旅行</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+<div class="main-container">
+  <!-- 左侧聊天区域 -->
+  <div class="chat-panel" id="chat-panel">
+    
+    <!-- 聊天气泡区域 -->
+    <div class="chat-wrapper" id="chat-wrapper">
+      <!-- 聊天气泡内容由 JS 插入 -->
+    </div>
+
+    <!-- 输入框区域应该放在聊天容器之后（底部） -->
+    <div class="input-bar">
+      <input type="text" id="user-input" placeholder="..." disabled />
+      <button id="reply-btn" class="send-btn">
+        <i class="fas fa-paper-plane"></i>
+    </button>
+
+    </div>
+
+  </div>
+
+  <!-- 右侧动画区域 -->
+  <div class="animation-panel">
+    <img src="demo.png" alt="示例动画" class="demo-img">
+  </div>
+</div>
+
+<!-- 地图导览页面：嵌入 React 应用 -->
+<section id="guide-section" style="height: 100vh; padding: 0; margin: 0;">
+  <iframe
+    src="https://casa0003.vercel.app/"
+    width="100%"
+    height="100%"
+    frameborder="0"
+    style="border: none; display: block;"
+    allowfullscreen
+  ></iframe>
+</section>
+
+
+<script src="script.js"></script>
+</body>
+</html>
+
