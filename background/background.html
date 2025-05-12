@@ -21,17 +21,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #ffffff;
+      background-color: #f6f1ec;
     }
 
     .container {
       height: 100%;
         display: flex;
-      width: 100%;
+      width: 80%;
 /*      max-width: 1400px;*/
       margin: 0 auto;
       height: 100vh;
-      overflow: hidden; 
+      overflow: hidden;
     }
       
 *, *::before, *::after {
@@ -42,7 +42,6 @@
       flex: 0 0 60%;
       max-width: 60%;
       padding: 40px;
-      background: #fff;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,7 +51,6 @@
     .right-panel {
       flex: 0 0 40%;
       max-width: 40%;
-      background: #fff;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -67,7 +65,7 @@
     #submit {
       padding: 10px 20px;
       font-size: 16px;
-      background-color: #666666;
+      background-color: #5c3fc1;
       color: white;
       border: none;
       border-radius: 5px;
@@ -131,15 +129,15 @@
       left: 50%;
       transform: translate(-50%, -50%);
       /* 你已有的样式继续保留： */
-      background-color: #e8f4f8;
-      border: 1px solid #a8d8ea;
+      background-color: #dcd0c3;
+      border: 2px solid #f36b1c;
       border-radius: 12px;
       padding: 30px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       transition: all 0.6s ease;
       opacity: 0;
       display: block;
-      width: 80%;         /* 可选：限制宽度 */
+      width: 100%;         /* 可选：限制宽度 */
       max-width: 800px;   /* 可选 */
     }
     .new-content.show {
@@ -194,7 +192,7 @@
         </p>
 
         <p class="instruction">
-          🖱️ <span style="color: #A8D8EA;">
+          🖱️ <span style="color: #f36b1c;">
             Click either bar to adjust your guess. Then submit to see the research result.
           </span>
         </p>
@@ -241,7 +239,7 @@
         {
           label: 'Your Guess',
           data: [guess, 100 - guess],
-          backgroundColor: ['#A8D8EA', '#A8D8EA'],
+          backgroundColor: ['#555555 ', '#999999 '],
           datalabels: {
             display: true,
             color: '#fff',
@@ -266,16 +264,31 @@
       }
     },
         
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: '% of Travellers'
-          }
-        }
-      },
+scales: {
+  y: {
+    beginAtZero: true,
+    max: 100,
+    title: {
+      display: true,
+      text: '% of Travellers'
+    },
+    ticks: {
+      color: '#333'  // Y轴刻度文字颜色
+    },
+    grid: {
+      color: '#aaa'  // Y轴线条颜色
+    }
+  },
+  x: {
+    ticks: {
+      color: '#333'  // X轴刻度文字颜色
+    },
+    grid: {
+      color: '#ddd'  // X轴线条颜色
+    }
+  }
+}
+,
       onClick: (e, elements) => {
         if (submitted || elements.length === 0) return;
         const index = elements[0].index;
@@ -326,7 +339,7 @@ document.getElementById('submit').addEventListener('click', () => {
     {
       label: 'Correct Answer',
       data: [correct, 100 - correct],
-      backgroundColor: ['#A8D8EA', '#A8D8EA'],
+      backgroundColor: ['#dcd0c3', '#dcd0c3'],
       borderColor: ['#666', '#999'],
       borderWidth: 0,
         datalabels: {
