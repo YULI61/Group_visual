@@ -114,16 +114,6 @@
   z-index: 1;
 }
 
-.sidebar-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 20%;
-  padding: 20px;
-  z-index: 1; /* 保证文字在背景上层 */
-  pointer-events: none; /* 如果你不想它挡住用户交互，设置这个 */
-}
 
 #panel-header {
   color: rgb(0, 0, 0);
@@ -149,6 +139,19 @@
   margin: 2px 0;
 }
              
+.sidebar-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20%;
+  padding: 20px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+   
         
     </style>
   </head>
@@ -174,73 +177,76 @@
         <p class="panel-description" style="color: #333; line-height: 1.6; margin-top: 12px;">
           The map includes a wider range of points of interest, like art venues, theaters, and shopping areas, with filters and personalized suggestions to help visitors plan easier and better.
         </p>
-        
-        <p id="source" style="margin-top: 22rem; font-size: 0.85rem; color: #888; text-align: left;">
-          Attraction Data Source: <br><a href="https://www.alva.org.uk/details.cfm?p=63" target="_blank" style="color: #888; text-decoration: underline;">ALVA (Association of Leading Visitor Attractions)</a><br>
-          POI Data Source: <br><a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" style="color: #888; text-decoration: underline;">Overpass API &amp; OpenStreetMap Contributors</a> | Updated: Nov 2024
-        </p>
-      
-        
     </div>
+
+ <form id="params" style="margin-top: 20px;">
+    <h4 class="txt-m txt-bold mb6">Choose a travel mode:</h4>
+    <div class="mb12 mr12 toggle-group align-center">
+      <label class="toggle-container">
+        <input name="profile" type="radio" value="walking" checked />
+        <div class="toggle toggle--active-null toggle--null">Walking</div>
+      </label>
+      <label class="toggle-container">
+        <input name="profile" type="radio" value="cycling" />
+        <div class="toggle toggle--active-null toggle--null">Cycling</div>
+      </label>
+      <label class="toggle-container">
+        <input name="profile" type="radio" value="driving" />
+        <div class="toggle toggle--active-null toggle--null">Driving</div>
+      </label>
+    </div>
+
+    <h4 class="txt-m txt-bold mb6">Choose a maximum duration:</h4>
+    <div class="mb12 mr12 toggle-group align-center">
+      <label class="toggle-container">
+        <input name="duration" type="radio" value="5" />
+        <div class="toggle toggle--active-null toggle--null">5 min</div>
+      </label>
+      <label class="toggle-container">
+        <input name="duration" type="radio" value="15" checked />
+        <div class="toggle toggle--active-null toggle--null">15 min</div>
+      </label>
+      <label class="toggle-container">
+        <input name="duration" type="radio" value="30" />
+        <div class="toggle toggle--active-null toggle--null">30 min</div>
+      </label>
+    </div>
+  </form>
+
+  <!-- ✅ 把按钮和下拉框也移进来 -->
+  <div style="margin-top: 10px;">
+    <button id="mode-single" class="btn mr6">Single Mode</button>
+    <button id="mode-all" class="btn mr6">All Mode</button>
+    <button id="mode-type" class="btn mr6">Type Mode</button>
+    <select id="type-select" class="btn" style="display:none; margin-top: 10px;">
+      <option value="Modern landmarks">Modern landmarks</option>
+      <option value="Museums">Museums</option>
+      <option value="Art galleries">Art galleries</option>
+      <option value="Historical landmarks">Historical landmarks</option>
+      <option value="Park and gardens">Park and gardens</option>
+      <option value="Musical and theatre">Musical and theatre</option>
+      <option value="Shopping districts">Shopping districts</option>
+      <option value="Royal family and palaces">Royal family and palaces</option>
+      <option value="Church spirtual">Church spirtual</option>
+      <option value="Mixed">Mixed</option>
+    </select>
   </div>
-      
-    <div class="absolute bg-gray-faint round"
-         style="top: 42%; left: 24px; padding: 20px; border: 1px solid #000000; width: 290px; height: 170px; display: flex; justify-content: center; align-items: center;">
 
-      <form id="params">
-        <h4 class="txt-m txt-bold mb6">Choose a travel mode:</h4>
-        <div class="mb12 mr12 toggle-group align-center">
-          <label class="toggle-container">
-            <input name="profile" type="radio" value="walking" checked />
-            <div class="toggle toggle--active-null toggle--null">Walking</div>
-          </label>
-          <label class="toggle-container">
-            <input name="profile" type="radio" value="cycling" />
-            <div class="toggle toggle--active-null toggle--null">Cycling</div>
-          </label>
-          <label class="toggle-container">
-            <input name="profile" type="radio" value="driving" />
-            <div class="toggle toggle--active-null toggle--null">Driving</div>
-          </label>
-        </div>
-
-        <h4 class="txt-m txt-bold mb6">Choose a maximum duration:</h4>
-        <div class="mb12 mr12 toggle-group align-center">
-          <label class="toggle-container">
-            <input name="duration" type="radio" value="5" />
-            <div class="toggle toggle--active-null toggle--null">5 min</div>
-          </label>
-          <label class="toggle-container">
-            <input name="duration" type="radio" value="15" checked />
-            <div class="toggle toggle--active-null toggle--null">15 min</div>
-          </label>
-          <label class="toggle-container">
-            <input name="duration" type="radio" value="30" />
-            <div class="toggle toggle--active-null toggle--null">30 min</div>
-          </label>
-        </div>
-      </form>
-    </div>
-
-    <div class="absolute z1" style="top: 63%; left: 22px;">
-      <button id="mode-single" class="btn mr6">Single Mode</button>
-      <button id="mode-all" class="btn mr6">All Mode</button>
-      <button id="mode-type" class="btn mr6">Type Mode</button>
-      <select id="type-select" class="btn" style="display:none;">
-        <option value="Modern landmarks">Modern landmarks</option>
-        <option value="Museums">Museums</option>
-        <option value="Art galleries">Art galleries</option>
-        <option value="Historical landmarks">Historical landmarks</option>
-        <option value="Park and gardens">Park and gardens</option>
-        <option value="Musical and theatre">Musical and theatre</option>
-        <option value="Shopping districts">Shopping districts</option>
-        <option value="Royal family and palaces">Royal family and palaces</option>
-        <option value="Church spirtual">Church spirtual</option>
-        <option value="Mixed">Mixed</option>
-      </select>
-    </div>
-
-      
+  <!-- 保留数据来源说明 -->
+  <div style="margin-top: auto;">
+    <p id="source" style="font-size: 0.85rem; color: #888; text-align: left;">
+      Attraction Data Source: <br>
+      <a href="https://www.alva.org.uk/details.cfm?p=63" target="_blank" style="color: #888; text-decoration: underline;">
+        ALVA (Association of Leading Visitor Attractions)
+      </a><br>
+      POI Data Source: <br>
+      <a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" style="color: #888; text-decoration: underline;">
+        Overpass API &amp; OpenStreetMap Contributors
+      </a> | Updated: Nov 2024
+    </p>
+  </div>
+</div> 
+</div>      
           
     <div id="legend" class="legend">
     </div>
