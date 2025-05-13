@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualisation Recap & Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      margin: 0;
+      padding: 0;
+      background: #f6f1ec;
+      color: #222;
+    }
+
+/* 针对 fullPage 和内嵌 iframe 内容 */
+body,
+html,
+.fp-scrollable,
+.fp-overflow,
+.section,
+iframe {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+
+body::-webkit-scrollbar,
+.fp-scrollable::-webkit-scrollbar,
+.fp-overflow::-webkit-scrollbar,
+.section::-webkit-scrollbar,
+iframe::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    p.subtitle {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+.recap-grid, .team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem 8rem; 
+}
+
+.recap-grid a {
+  width: 300px;              
+  text-decoration: none;
+  color: black;
+  text-align: center;        
+  display: flex;
+  flex-direction: column;    
+  align-items: center;       
+}
+
+.recap-grid img {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.recap-grid img:hover {
+  transform: scale(1.05);
+}
+
+.recap-grid p {
+  margin-top: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.recap-grid span {
+  color: gray;
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+
+.teams-section {
+  margin-top: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.team-visual-wrapper {
+  position: relative;
+  height: 240px; /* 控制整个头像 + 背景块区域高度 */
+  margin-top: 3rem;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+
+.team-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.team-colored-background {
+  position: absolute;
+  top: 200px; 
+  left: 0;
+  width: 100%;
+  height: calc(100% - 120px);
+  background-color: #dcd0c3;
+  z-index: 1;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 6rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.team-card {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 0px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.team-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.team-card:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, #9c87e0 , transparent);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  padding-bottom: 1rem;
+  transition: opacity 0.3s;
+}
+
+.team-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .name {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-icons a {
+  background-color: white;
+  color: #333;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: transform 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  background-color: #333;
+  color: white;
+}
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- VISUALISATION RECAP -->
+    <section class="recap">
+      <h2>VISUALISATION RECAP</h2>
+      <p class="subtitle">Click the visual to revisit the corresponding section</p>
+      <div class="recap-grid">
+        <a href="#" onclick="window.parent.fullpage_api.moveTo('intro'); return false;">
+        <img src="assets/images/flow.png" alt="Flow" />
+        <p>International Flow to London<br><span>YI LIU</span></p>
+        </a>
+
+        <a href="#" onclick="window.parent.fullpage_api.moveTo('uk-attraction'); return false;">
+        <img src="assets/images/flow.png" alt="Job Density" />
+        <p>Attractions in England<br><span>KUNDI WANG</span></p>
+        </a>
+
+        <a href="#" onclick="window.parent.fullpage_api.moveTo('london-attraction'); return false;">
+        <img src="assets/images/Isochrone.png" alt="London Isochrone Map" />
+        <p>London Isochrone Map<br><span>YI LIU</span></p>
+        </a>
+        
+        <a href="#" onclick="window.parent.fullpage_api.moveTo('personalised-trip'); return false;">
+        <img src="assets/images/Isochrone.png" alt="Personalised Trip" />
+        <p>Personalised Trip<br><span>YITING CHEN</span></p>
+        </a>
+
+      </div>
+    </section>
+  </div>
+
+<!-- TEAMS -->
+<section class="teams-section">
+  <h2>TEAMS</h2>
+  <p class="subtitle">Meet our team members</p>
+
+  <div class="team-visual-wrapper">
+<div class="team-grid">
+
+  <div class="team-card">
+    <img src="assets/images/dog.jpg" alt="YI LIU" />
+    <div class="overlay">
+      <p class="name">YI LIU</p>
+      <div class="social-icons">
+        <a href="sixandone115@163.com" target="_blank">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/YULI61" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <img src="assets/images/dog.jpg" alt="KUNDI WANG" />
+    <div class="overlay">
+      <p class="name">KUNDI WANG</p>
+      <div class="social-icons">
+        <a href="wangkundi99@163.com" target="_blank">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/kundiwang" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-card">
+    <img src="assets/images/dog.jpg" alt="YITING CHEN" />
+    <div class="overlay">
+      <p class="name">YITING CHEN</p>
+      <div class="social-icons">
+        <a href="chenyiting1003@163.com" target="_blank">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href=" https://github.com/chenyiting1003" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+    <div class="team-colored-background"></div>
+  </div>
+</section>
+
+
+</body>
+</html>
