@@ -32,20 +32,20 @@
         
     .legend {
       position: absolute;
-      bottom: 8%;
-      left: 10%;
+      bottom: 6%;
+      left: 58%;
       transform: translateX(-50%);
-      background: rgba(255,255,255,0);
+      background: rgba(255,255,255,0.6);
       padding: 8px 16px;
       border-radius: 8px;
       display: flex;
       flex-wrap: wrap; /* ← 允许换行 */
-      gap: 6px 8px;  /* 行间距和列间距 */
+      gap: 6px 12px;  /* 行间距和列间距 */
       font-size: 13px;
       font-family: sans-serif;
       box-shadow: 0 0 4px rgba(0,0,0,0);
-      max-width: 300px; /* 可选限制宽度 */
-      justify-content: left; /* 居中对齐 */
+      max-width: 1300px; /* 可选限制宽度 */
+      justify-content: center; /* 居中对齐 */
     }
 
 
@@ -174,11 +174,19 @@
         <p class="panel-description" style="color: #333; line-height: 1.6; margin-top: 12px;">
           The map includes a wider range of points of interest, like art venues, theaters, and shopping areas, with filters and personalized suggestions to help visitors plan easier and better.
         </p>
-
+        
+        <p id="source" style="margin-top: 24rem; font-size: 0.85rem; color: #888; text-align: left;">
+          Attraction Data Source: <br><a href="https://www.alva.org.uk/details.cfm?p=63" target="_blank" style="color: #888; text-decoration: underline;">ALVA (Association of Leading Visitor Attractions)</a><br>
+          POI Data Source: <br><a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" style="color: #888; text-decoration: underline;">Overpass API &amp; OpenStreetMap Contributors</a> | Updated: Nov 2024
+        </p>
+      
+        
     </div>
   </div>
       
-    <div class="absolute bg-gray-faint round" style="top: 42%; left: 24px; padding: 20px;border: 1px solid #000000;">
+    <div class="absolute bg-gray-faint round"
+         style="top: 42%; left: 24px; padding: 20px; border: 1px solid #000000; width: 290px; height: 170px; display: flex; justify-content: center; align-items: center;">
+
       <form id="params">
         <h4 class="txt-m txt-bold mb6">Choose a travel mode:</h4>
         <div class="mb12 mr12 toggle-group align-center">
@@ -214,7 +222,7 @@
       </form>
     </div>
 
-    <div class="absolute z1" style="top: 65%; left: 22px;">
+    <div class="absolute z1" style="top: 63%; left: 22px;">
       <button id="mode-single" class="btn mr6">Single Mode</button>
       <button id="mode-all" class="btn mr6">All Mode</button>
       <button id="mode-type" class="btn mr6">Type Mode</button>
