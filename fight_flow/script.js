@@ -117,7 +117,8 @@ async function loadData() {
     });  
     });
 
-  const years = Object.keys(visitorsData).sort();
+  const years = Object.keys(visitorsData).filter(y => y !== '2020').sort();
+
 
   const slider = document.getElementById("year-slider");
   const playBtn = document.getElementById("play-btn");
@@ -258,7 +259,10 @@ playBtn.addEventListener("click", () => {
   if (playing) {
     autoPlayTimer = setInterval(() => {
       let currentYear = parseInt(slider.value);
-      const nextYear = currentYear + 1 > 2020 ? 2002 : currentYear + 1;
+      let nextYear = currentYear + 1 > 2023 ? 2002 : currentYear + 1;
+      if (nextYear === 2020) nextYear = 2021;
+
+
       slider.value = nextYear;
       slider.dispatchEvent(new Event("input"));
     }, 3000);
@@ -408,26 +412,30 @@ function updateBarChart(year) {
 
 let totalByYear = {};
 totalByYear = {
-    2002: 11603.4,
-    2003: 11695.8,
-    2004: 13389.3,
-    2005: 13892.6,
-    2006: 15592.6,
-    2007: 15339.8,
-    2008: 14753.0,
-    2009: 14211.3,
-    2010: 14705.5,
-    2011: 15289.5,
-    2012: 15460.9,
-    2013: 16810.8,
-    2014: 17404.2,
-    2015: 18581.1,
-    2016: 19059.5,
-    2017: 19827.8,
-    2018: 19090.2,
-    2019: 21713.5,
-    2020: 3696.3
+    2002: 11603,
+    2003: 11696,
+    2004: 13389,
+    2005: 13893,
+    2006: 15593,
+    2007: 15340,
+    2008: 14753,
+    2009: 15092,
+    2010: 15353,
+    2011: 16103,
+    2012: 16279,
+    2013: 17474,
+    2014: 18189,
+    2015: 19385,
+    2016: 20533,
+    2017: 21708,
+    2018: 21072,
+    2019: 21714,
+    2020: 0,
+    2021: 2719,
+    2022: 16126,
+    2023: 20277,
 };
+
 
 function renderLineChart() {
     if (barChart) {
@@ -437,7 +445,7 @@ function renderLineChart() {
     const chartDom = document.getElementById("stats-chart");
     barChart = echarts.init(chartDom);
   
-    const years = Object.keys(totalByYear);
+    const years = Object.keys(totalByYear).filter(y => y !== '2020');
     const values = years.map(year => totalByYear[year]);
   
     let currentMarkLine = {

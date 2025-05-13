@@ -119,17 +119,6 @@ body, html {
     min-width: 50px;
   }
 
-  /* #year-overlay {
-    position: absolute;
-    top: 38%;
-    left: 55%;
-    font-size: 100px;
-    font-family: monospace;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.8);
-    pointer-events: none;
-    z-index: 15;
-  } */
 
   #chart-header {
     position: absolute;
