@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>London Attractions Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+        overflow: hidden;
+         background-color: #f6f1ec;
+    }
+    .container {
+  display: flex;
+  height: 100vh;
+  margin-top: 30px; /* 距离页面顶部留白 */
+}
+      
+      .left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  padding: 50px 50px 100px 100px; /* 增加顶部和左侧内边距 */
+}
+
+  .chart-block {
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .bottom-charts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* 允许换行，但在宽度足够时并排 */
+}
+
+  .bottom-charts .chart-block {
+  flex: 1 1 40%;
+  max-width: 400px;  /* 或者改成固定宽度 350px */
+  min-width: 280px;
+  display: flex;
+  justify-content: center;  /* 图表水平居中 */
+}
+
+.bottom-charts .chart-block canvas {
+  max-width: 100%;
+  max-height: 300px;
+  width: 100% !important;
+  height: auto !important;
+}
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+      /* 缩小 chart2 和 chart3 的 canvas */
+.bottom-charts .chart-block canvas {
+  max-width: 90%;
+  max-height: 240px;
+  width: 90% !important;
+  height: auto !important;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 20px 100px 100px 20px; /* 左50，上下50，右100，加大右边距 */
+  overflow-y: hidden;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+    
+    .chart-text {
+      margin-bottom: 40px;
+    }
+      .chart-block canvas {
+    max-width: 800px;
+    max-height: 400px;
+    width: 80%;
+    height: auto;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 图表展示区 -->
+  <div class="left-panel">
+  <!-- Top chart -->
+  <div class="chart-block">
+    <canvas id="chart1"></canvas>
+  </div>
+
+  <!-- Bottom two charts side-by-side -->
+  <div class="bottom-charts">
+    <div class="chart-block">
+      <canvas id="chart2"></canvas>
+    </div>
+    <div class="chart-block">
+      <canvas id="chart3"></canvas>
+    </div>
+  </div>
+</div>
+
+    <!-- 文字说明区 -->
+    <div class="right-panel">
+      <div class="chart-text">
+        <p>
+  London not only has the <strong>highest attraction density</strong> (around <strong>0.0477 per square kilometer</strong>), but also far surpasses other regions in total visitor numbers, receiving <strong style="color:#c0392b">over 55 million tourists</strong> in 2023.<br>
+  Combined with the spatial distribution shown in the previous map, <em>several areas in central London</em> have a high concentration of attractions, making them <strong style="color:#2980b9">ideal for city walks</strong>.<br>
+  For this reason, we have chosen to focus our travel exploration on <strong style="color:#27ae60">London — the city with the richest resources and the strongest appeal!</strong>
+</p>
+      </div>
+      
+        <div class="chart-text">
+        <p>
+  <strong style="color: #2C3E50;">London</strong> not only has the highest attraction density (around <span style="font-weight: bold; color: #E74C3C;">0.0477 per square kilometer</span>), but also far surpasses other regions in total visitor numbers, receiving over <span style="font-weight: bold; color: #3498DB;">55 million tourists</span> in 2023.
+</p>
+<p>
+  Combined with the spatial distribution shown in the previous map, several areas in <span style="color: #9B59B6; font-weight: bold;">central London</span> have a high concentration of attractions, making them ideal for <em style="color: #F39C12; font-style: italic;">city walks</em>.
+</p>
+<p>
+  For this reason, we have chosen to focus our travel exploration on <span style="font-weight: bold; color: #1ABC9C;">London</span> — the city with the richest resources and the strongest appeal!
+</p>
+      </div>
+      
+    </div>
+  </div>
+    
+  
+<script>
+ 
+  Papa.parse('region_summary.csv', {
+  download: true,
+  header: true,
+  dynamicTyping: true,
+  complete: function(results) {
+    const data = results.data;
+
+    const regions = data.map(d => d.Region);
+    const densities = data.map(d => d["Attraction Density (per sqkm)"]);
+    const visitors = data.map(d => d["Total Visitors 2023"]);
+
+    const ctx = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: regions,
+        datasets: [
+          {
+            label: 'Attraction Density (per sqkm)',
+            data: densities,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            yAxisID: 'y',
+          },
+          {
+            label: 'Total Visitors (2023)',
+            data: visitors,
+            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            yAxisID: 'y1',
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: {
+          mode: 'index',
+          intersect: false,
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Attraction Density and Total Visitors by Region (2023)'
+          },
+//          legend: {
+//            display: false  // 👈 关闭图例显示
+//          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              maxRotation: 45,
+              minRotation: 45,
+            }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            title: {
+              display: true,
+              text: 'Attraction Density (per sqkm)'
+            },
+            ticks: {
+              color: 'rgba(54, 162, 235, 0.7)'
+            }
+          },
+          y1: {
+            type: 'linear',
+            position: 'right',
+            title: {
+              display: true,
+              text: 'Total Visitors (2023)'
+            },
+            grid: {
+              drawOnChartArea: false
+            },
+            ticks: {
+              color: 'rgba(75, 192, 192, 0.7)'
+            }
+          }
+        }
+      }
+    });
+  }
+});
+
+    
+// 读取 top10_vs_others.csv 并绘制饼图
+Papa.parse('top10_vs_others.csv', {
+  download: true,
+  header: true,
+  dynamicTyping: true,
+  complete: function(results) {
+    const data = results.data;
+
+    // 提取标签和数据
+    const labels = data.map(d => d.Attraction);
+    const sizes = data.map(d => d["Visitors 2023"]);
+
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: sizes,
+          backgroundColor: [
+            '#FF6384', '#36A2EB', '#FFCE56', '#8BC34A', '#FF9800',
+            '#9C27B0', '#03A9F4', '#E91E63', '#00BCD4', '#CDDC39',
+            '#795548' // 假设包括 Others
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Top 10 Attractions vs Others (2023 Visitors)'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.label || '';
+                let value = context.parsed;
+                let total = context.chart._metasets[0].total;
+                let percentage = ((value / total) * 100).toFixed(1);
+                return `${label}: ${value.toLocaleString()} (${percentage}%)`;
+              }
+            }
+          },
+          legend: {
+            display: false 
+          }
+        }
+      }
+    });
+  }
+});
+    
+    Papa.parse('category_summary.csv', {
+  download: true,
+  header: true,
+  dynamicTyping: true,
+  complete: function(results) {
+    const data = results.data;
+
+    const labels = data.map(d => d["Main_Category"]);
+    const values = data.map(d => d["Visitors 2023"]);
+
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Total Visitors',
+          data: values,
+          backgroundColor: [
+            '#8dd3c7', '#ffffb3', '#bebada', '#fb8072', '#80b1d3',
+            '#fdb462', '#b3de69', '#fccde5', '#d9d9d9', '#bc80bd',
+            '#ccebc5', '#ffed6f'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Total Visitors by Attraction Type (2023)'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.label || '';
+                const value = context.parsed;
+                const total = context.chart._metasets[0].total;
+                const percentage = ((value / total) * 100).toFixed(1);
+                return `${label}: ${value.toLocaleString()} (${percentage}%)`;
+              }
+            }
+          },
+          legend: {
+            display: false  // 👈 去掉图例
+          }
+        }
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>

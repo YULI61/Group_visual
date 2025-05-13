@@ -11,6 +11,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+      /* 设定页面和地图全屏 & 禁止滚动 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* 去掉滚动条 */
+}
         /* 基础地图样式 */
         #map {
             width: 100%;
@@ -83,7 +90,7 @@
 
 #regionalChart {
     transition: opacity 0.3s ease; /* 添加过渡效果 */
-}
+/* } */
     </style>
 </head>
 <body>
@@ -254,29 +261,29 @@ map.on('load', () => {
     }
   });
 
-  // 记录完整地图边界，用于后续 reset 缩放
-  map.once('idle', () => {
-    fullMapBounds = map.getBounds();
-  });
+        // 记录完整地图边界，用于后续 reset 缩放
+        map.once('idle', () => {
+          fullMapBounds = map.getBounds();
+        });
 
-  // 异步加载数据用于过滤逻辑（非图层部分）
-  fetch('data/attractions_filtered.geojson')
-    .then(res => res.json())
-    .then(data => {
-      allAttractions = data.features;
-      // 添加延迟确保DOM就绪（仅用于调试）
-    setTimeout(() => {
-      updateRegionalChart('All');
-      initApp();
-    }, 100);
-    });
-    
-    // 新增：初始化时渲染全国数据
-      updateRegionalChart('All'); 
+        // 异步加载数据用于过滤逻辑（非图层部分）
+        fetch('data/attractions_filtered.geojson')
+          .then(res => res.json())
+          .then(data => {
+            allAttractions = data.features;
+            // 添加延迟确保DOM就绪（仅用于调试）
+          setTimeout(() => {
+            updateRegionalChart('All');
+            initApp();
+          }, 100);
+          });
+          
+          // 新增：初始化时渲染全国数据
+            updateRegionalChart('All'); 
 
-  // 启动初始交互逻辑（图例/按钮/筛选等）
-  initApp();
-});
+        // 启动初始交互逻辑（图例/按钮/筛选等）
+        initApp();
+      });
 
 // ===================== 3. 设置筛选功能 =====================
 function setupEventListeners() {
@@ -312,24 +319,78 @@ function applyFilters() {
   console.log("Applied Filter:", finalFilter);
   map.setFilter('attractions-layer', finalFilter);
 
-  // 视图自动缩放至所选区域
-  if (selectedRegion !== 'All') {
+
+  // test 
+   // 视图自动缩放至所选区域
+   if (selectedRegion !== 'All') {
+    // 检查数据源状态
+    if (!map.getSource('attractions')) {
+      console.error('数据源未初始化');
+      return;
+    }
+    if (!map.isSourceLoaded('attractions')) {
+      console.error('数据尚未加载完成');
+      return;
+    }
+
+    // 查询全量数据
     const features = map.querySourceFeatures('attractions', {
-      filter: ['==', ['get', 'Region'], selectedRegion]
+      filter: ['==', ['get', 'Region'], selectedRegion],
+      validate: false // 关键修改
     });
+
+    console.log(`[DEBUG] 区域 ${selectedRegion} 查询到要素数量:`, features.length);
 
     if (features.length > 0) {
       const bounds = new mapboxgl.LngLatBounds();
-      features.forEach(f => bounds.extend(f.geometry.coordinates));
-      map.fitBounds(bounds, { padding: 40, maxZoom: 9 });
+      features.forEach(f => {
+        if (f.geometry?.coordinates) {
+          bounds.extend(f.geometry.coordinates);
+        }
+      });
+      
+      if (!bounds.isEmpty()) {
+        map.fitBounds(bounds, { 
+          padding: 40, 
+          maxZoom: 9,
+          duration: 1000 // 添加平滑过渡
+        });
+      } else {
+        console.warn('边界计算失败：无有效坐标');
+      }
+    } else {
+      console.warn('该区域无数据');
+      // 可选：重置视图或显示提示
+      map.fitBounds(fullMapBounds, { padding: 40 });
     }
   } else {
     map.fitBounds(fullMapBounds, { padding: 40 });
   }
-    
-     // 新增：更新区域图表
-    updateRegionalChart(selectedRegion);
+
+  // 更新区域图表
+  updateRegionalChart(selectedRegion);
 }
+  // // 视图自动缩放至所选区域
+  // if (selectedRegion !== 'All') {
+
+     
+  //   const features = map.querySourceFeatures('attractions', {
+  //     filter: ['==', ['get', 'Region'], selectedRegion],
+  //     validate: false // 强制查询全量数据
+  //   });
+
+  //   if (features.length > 0) {
+  //     const bounds = new mapboxgl.LngLatBounds();
+  //     features.forEach(f => bounds.extend(f.geometry.coordinates));
+  //     map.fitBounds(bounds, { padding: 40, maxZoom: 9 });
+  //   }
+  // } else {
+  //   map.fitBounds(fullMapBounds, { padding: 40 });
+  // }
+    
+  //    // 新增：更新区域图表
+  //   updateRegionalChart(selectedRegion);
+// }
 
 // ===================== 4. 悬停与弹窗 =====================
 function handleFeatureHover(e) {
@@ -359,7 +420,18 @@ function handleFeatureHover(e) {
     const feature = e.features[0];
     hoverPopup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
       .setLngLat(e.lngLat)
-      .setHTML(`<strong>${feature.properties.Name}</strong><br>${feature.properties.Main_Category}`)
+      // .setHTML(`<strong>${feature.properties.Name}</strong><br>${feature.properties.Main_Category}`)
+      .setHTML(`
+      <div style="font-size: 12px">
+        <strong>${feature.properties.Attraction || "Unknown"}</strong><br>
+        Category: ${feature.properties.Main_Category || "N/A"}<br>
+        Visitors: ${
+          feature.properties["Visitors 2023"]
+            ? Number(feature.properties["Visitors 2023"]).toLocaleString()
+            : "N/A"
+        }
+      </div>
+    `)
       .addTo(map);
   }
 }
@@ -385,6 +457,7 @@ function initApp() {
     }
   });
 }
+
      
         // ===================== 修改后的代码 =====================
 // 创建或更新区域柱状图（增强版）
@@ -393,7 +466,8 @@ function updateRegionalChart(region) {
     const features = region === 'All' ? 
         allAttractions : 
         map.querySourceFeatures('attractions', {
-            filter: ['==', ['get', 'Region'], region]
+            filter: ['==', ['get', 'Region'], region],
+            validate: false // 关键修改
         });
 
     // 数据去重处理（使用Map保证唯一性）
