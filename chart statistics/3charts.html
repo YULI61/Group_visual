@@ -17,7 +17,8 @@
     .container {
   display: flex;
   height: 100vh;
-  margin-top: 30px; /* 距离页面顶部留白 */
+  /* margin-top: 30px; 距离页面顶部留白 */
+  /* padding-top: 30px; */
 }
       
       .left-panel {
@@ -25,7 +26,8 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  padding: 50px 50px 100px 100px; /* 增加顶部和左侧内边距 */
+  
+  padding: 100px 50px 80px 100px; /* 增加顶部和左侧内边距 */
 }
 
   .chart-block {
@@ -70,7 +72,7 @@
 
 .right-panel {
   flex: 1;
-  padding: 20px 100px 100px 20px; /* 左50，上下50，右100，加大右边距 */
+  padding: 10px 100px 100px 20px; /* 左50，上下50，右100，加大右边距 */
   overflow-y: hidden;
   height: 100%;
 
@@ -79,9 +81,16 @@
   justify-content: center;
 }
     
-    .chart-text {
-      margin-bottom: 40px;
+.chart-text1, .chart-text2  {
+      margin-bottom: 10px;
     }
+
+    .chart-text1 p {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
       .chart-block canvas {
     max-width: 800px;
     max-height: 400px;
@@ -108,29 +117,66 @@
       <canvas id="chart3"></canvas>
     </div>
   </div>
+
+  <p id="source" style="margin-top: 2rem; font-size: 0.85rem; color: #888; text-align: center;">
+    Source: 
+    <a href="https://www.visitbritain.org/research-insights/england-visitor-attractions-latest" target="_blank" style="color: #888; text-decoration: underline;">
+      VisitBritain – England Visitor Attractions
+  </a>
+    </a >
+  </p >
 </div>
 
     <!-- 文字说明区 -->
     <div class="right-panel">
-      <div class="chart-text">
-        <p>
-  London not only has the <strong>highest attraction density</strong> (around <strong>0.0477 per square kilometer</strong>), but also far surpasses other regions in total visitor numbers, receiving <strong style="color:#c0392b">over 55 million tourists</strong> in 2023.<br>
-  Combined with the spatial distribution shown in the previous map, <em>several areas in central London</em> have a high concentration of attractions, making them <strong style="color:#2980b9">ideal for city walks</strong>.<br>
-  For this reason, we have chosen to focus our travel exploration on <strong style="color:#27ae60">London — the city with the richest resources and the strongest appeal!</strong>
-</p>
-      </div>
-      
-        <div class="chart-text">
-        <p>
-  <strong style="color: #2C3E50;">London</strong> not only has the highest attraction density (around <span style="font-weight: bold; color: #E74C3C;">0.0477 per square kilometer</span>), but also far surpasses other regions in total visitor numbers, receiving over <span style="font-weight: bold; color: #3498DB;">55 million tourists</span> in 2023.
-</p>
+      <div class="chart-text1">
+         <!-- 第一个标题 -->
+<h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-bottom: 10px;">
+  Focus on Central London
+</h2>
+
 <p>
-  Combined with the spatial distribution shown in the previous map, several areas in <span style="color: #9B59B6; font-weight: bold;">central London</span> have a high concentration of attractions, making them ideal for <em style="color: #F39C12; font-style: italic;">city walks</em>.
+  London not only has the highest attraction density, but also far surpasses other regions in total visitor numbers.
 </p>
+
 <p>
-  For this reason, we have chosen to focus our travel exploration on <span style="font-weight: bold; color: #1ABC9C;">London</span> — the city with the richest resources and the strongest appeal!
+  According to the previous interactive map, several boroughs in central London have a high concentration of sites, making them ideal locations for urban walking and exploration.
 </p>
-      </div>
+
+<p>
+  <strong style="color: #8466C6;">For these reasons, we have chosen central London as the focus of our in-depth study on customized travel experiences!</strong>
+</p>
+
+<!-- 第二个标题 -->
+<h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-top: 30px; margin-bottom: 10px;">
+  Find Your Own Trip!
+</h2>
+
+<p>
+  From the chart, we can see two key patterns:
+  <ul>
+    <li style="font-size: 13px;">A highly concentrated <strong>"head effect"</strong> — the top 10 attractions alone attract over 70% of all visitors.</li>
+    <li style="font-size: 13px;"><strong>Museums and galleries</strong> and <strong>historic buildings and sites</strong> together account for 91.5% of total visitors.</li>
+  </ul>
+</p>
+
+<p>
+  Some iconic urban attractions are missing from official statistics, such as the <strong>West End theatres</strong> and <strong>Harrods</strong>. 
+  Though not classified as traditional tourist sites, they play a vital role in shaping London’s diverse appeal.
+</p>
+
+<p>
+  Overall, visitor preferences are not only concentrated on a few well-known spots but also show a strong tendency toward similar types of attractions.
+</p>
+
+<p>
+  This raises an important question: 
+  <br> 
+  <strong style="color: #8466C6;">How can visitors move beyond the “information cocoon” of mainstream recommendations and discover the city’s lesser-known, yet equally enriching, hidden gems?</strong>
+</p>
+            
+                
+       
       
     </div>
   </div>
@@ -158,13 +204,15 @@
           {
             label: 'Attraction Density (per sqkm)',
             data: densities,
-            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            // backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            backgroundColor: '#FFD700',
             yAxisID: 'y',
           },
           {
             label: 'Total Visitors (2023)',
             data: visitors,
-            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            backgroundColor: '#8466C6',
+            // backgroundColor: 'rgba(75, 192, 192, 0.7)',
             yAxisID: 'y1',
           }
         ]
@@ -199,7 +247,7 @@
               text: 'Attraction Density (per sqkm)'
             },
             ticks: {
-              color: 'rgba(54, 162, 235, 0.7)'
+              color: '#333333'
             }
           },
           y1: {
@@ -213,7 +261,7 @@
               drawOnChartArea: false
             },
             ticks: {
-              color: 'rgba(75, 192, 192, 0.7)'
+              color: '#333333'
             }
           }
         }
@@ -243,10 +291,18 @@ Papa.parse('top10_vs_others.csv', {
         datasets: [{
           data: sizes,
           backgroundColor: [
-            '#FF6384', '#36A2EB', '#FFCE56', '#8BC34A', '#FF9800',
-            '#9C27B0', '#03A9F4', '#E91E63', '#00BCD4', '#CDDC39',
-            '#795548' // 假设包括 Others
-          ]
+  '#A6CEE3',  // 淡蓝
+  '#B2DF8A',  // 淡绿
+  '#FDBF6F',  // 淡橙
+  '#CAB2D6',  // 淡紫
+  '#FFB3B3',  // 粉红
+  '#FFFFB3',  // 淡黄
+  '#B3DE69',  // 青绿
+  '#FCCDE5',  // 粉紫
+  '#D9D9D9',  // 浅灰
+  '#CCEBC5',  // 冷青绿
+  '#BC80BD'   // 柔紫（作为 Others）
+]
         }]
       },
       options: {
@@ -254,7 +310,7 @@ Papa.parse('top10_vs_others.csv', {
         plugins: {
           title: {
             display: true,
-            text: 'Top 10 Attractions vs Others (2023 Visitors)'
+            text: 'Top 10 Attractions vs Others (London 2023)'
           },
           tooltip: {
             callbacks: {
@@ -307,7 +363,7 @@ Papa.parse('top10_vs_others.csv', {
         plugins: {
           title: {
             display: true,
-            text: 'Total Visitors by Attraction Type (2023)'
+            text: 'Total Visitors by Attraction Type (London 2023)'
           },
           tooltip: {
             callbacks: {
