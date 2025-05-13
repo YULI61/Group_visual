@@ -122,17 +122,17 @@ async function loadData() {
   const slider = document.getElementById("year-slider");
   const playBtn = document.getElementById("play-btn");
   
+  // 在 script.js 的 loadData 函数中，确保更新逻辑正确
   slider.addEventListener("input", () => {
     const year = slider.value;
     cancelAnimationFrame(animationId);
     setupRoutes(year);
     updateBarChart(year); 
-    document.getElementById("year-overlay").innerText = year;
+    document.getElementById("year-label").textContent = year; // 确保此行存在
   });
-  
   slider.value = years[0];
   setupRoutes(years[0]);
-  document.getElementById("year-overlay").innerText = years[0];
+  document.getElementById("year-label").textContent = years[0];
 
 }
 
@@ -154,7 +154,7 @@ function setupRoutes(year) {
         visitors,
         emitInterval: 10000 / Math.max(1, copies),
         lastEmit: 0,
-        color: 'rgb(87, 168, 245)'
+        color: ' #f36b1c'
       });
     }
   });
@@ -190,7 +190,7 @@ function setupRoutes(year) {
       type: 'line',
       source: 'lines',
       paint: {
-        'line-color': 'rgb(50, 73, 150)',     
+        'line-color': '#8E6CFF',     
         'line-width': 2,
         'line-opacity': 0.8,
         'line-blur': 1            
@@ -230,8 +230,8 @@ function setupRoutes(year) {
 
 map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/dark-v11',
-    center: [0, 48],        
+    style: 'mapbox://styles/mapbox/light-v11',
+    center: [-10, 50],        
     zoom: 3.6,                                    
   });
 
@@ -241,8 +241,7 @@ map.addControl(new mapboxgl.NavigationControl({
     visualizePitch: true,
     showCompass: true,
     showZoom: true
-}), 'top-right');
-  
+}), 'bottom-right');
 
 
 const playBtn = document.getElementById("play-btn");
@@ -318,7 +317,9 @@ function startBarRace() {
   const option = {
     title: {
       text: 'Top 10 Visitor Countries per Year (000s)',
-      textStyle: { color: '#fff' },
+      textStyle: { color: '#555555' ,
+        // fontWeight: 'normal'
+       },
       left: 60,   
       top: 50  
     },
@@ -327,12 +328,12 @@ function startBarRace() {
       max: 'dataMax',
       axisLabel: {
         formatter: n => Math.round(n) + '',
-        color: '#fff'
+        color: '#555555'
       },
       splitLine: {
         show: true,
         lineStyle: {
-          color: 'rgba(255,255,255,0.05)'
+          color: 'rgba(55, 55, 55, 0.2)'
         }
       }
     },
@@ -342,7 +343,7 @@ function startBarRace() {
       axisLabel: {
         show: true,
         fontSize: 14,
-        color: '#fff'
+        color: '#555555'
       },
       animationDuration: 300,
       animationDurationUpdate: 300
@@ -361,16 +362,15 @@ function startBarRace() {
           position: 'right',
           valueAnimation: true,
           fontFamily: 'monospace',
-          color: '#fff'
+          color: '#555555'
         },
         itemStyle: {
-            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-              { offset: 0, color: '#A9CCE3' },
-              { offset: 1, color: '#2980B9' }
-            ]),
-            shadowColor: 'rgba(0, 0, 0, 0.15)',
-            shadowBlur: 6
-          }
+          color: 'rgba(255, 226, 146, 0.5)', 
+          borderColor: '#f36b1c',           
+          borderWidth: 0.5,                   
+          shadowColor: 'rgba(0, 0, 0, 0.85)',
+          shadowBlur: 0
+        }
           
           
       }
@@ -446,7 +446,7 @@ function renderLineChart() {
         show: false
       },
       lineStyle: {
-        color: 'rgba(255,255,255,0.5)',
+        color: 'rgba(19, 19, 19, 0.5)',
         type: 'dashed',
         width: 2
       },
@@ -459,15 +459,15 @@ function renderLineChart() {
         left: 60, 
         top: 50,  
         textStyle: {
-          color: '#fff',
+          color: '#000000',
           fontSize: 18
         }
       },
       tooltip: {
         trigger: 'axis',
-        backgroundColor: 'rgba(50,50,50,0.7)',
+        backgroundColor: 'rgba(50,50,50,1)',
         textStyle: {
-          color: '#fff'
+          color: 'rgb(0, 0, 0)'
         },
         axisPointer: {
           type: 'line'
@@ -488,26 +488,26 @@ function renderLineChart() {
         type: 'category',
         data: years,
         axisLabel: {
-          color: '#fff',
+          color: '#999999',
           fontSize: 12
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: 'rgba(255,255,255,0.05)'
+            color: 'rgba(0, 0, 0, 0.3)'
           }
         }
       },
       yAxis: {
         type: 'value',
         axisLabel: {
-          color: '#fff',
+          color: '#999999',
           fontSize: 12
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: 'rgba(255,255,255,0.05)'
+            color: 'rgba(0, 0, 0, 0.3)'
           }
         }
       },
@@ -518,14 +518,14 @@ function renderLineChart() {
         symbol: 'circle',
         symbolSize: 6,
         lineStyle: {
-          color: '#6fa8dc',
+          color: '#f36b1c',
           width: 3
         },
         itemStyle: {
-          color: '#6fa8dc'
+          color: '#f36b1c'
         },
         areaStyle: {
-          color: 'rgba(111, 168, 220, 0.2)'
+          color: 'rgba(255, 226, 146, 0.5)'
         },
         markLine: currentMarkLine
       }],

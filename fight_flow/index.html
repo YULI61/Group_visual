@@ -8,27 +8,48 @@
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="map"></div>
+  <div id="chart-panel">
 
-  <div id="chart-container">
-    <canvas id="line-chart"></canvas>
-  </div>  
-
-  <div id="timeline-controls">
-    <button id="play-btn">▶</button>
-    <input type="range" id="year-slider" min="2002" max="2020" step="1" value="2002">
-  </div>
-  
-  <div id="year-overlay">2002</div>
-
-    <div id="stats-chart"></div>
-
-    <div id="chart-header">
-        <button id="toggle-btn">Show Total</button>
+    <div id="panel-header">
+      <h2>International Flow to London</h2>
+      <hr />
+      <p class="panel-description">
+        This panel shows the trend of international visitors to London from 2002 to 2020. 
+        The number of visitors grew steadily over time. 
+        Although there was a sharp drop in 2020 due to the COVID-19 pandemic, the numbers began to recover soon after. 
+        This highlights London’s strong appeal to global tourists and the important role tourism plays in the city’s economy.</p>
     </div>
-      
+
+    <div id="chart-container">
+      <canvas id="line-chart"></canvas>
+    </div>  
+
+    <!-- 在 index.html 的 timeline-controls 部分添加年份显示 -->
+    <div id="timeline-controls">
+      <button id="play-btn">▶</button>
+      <input type="range" id="year-slider" min="2002" max="2020" step="1" value="2002">
+      <span id="year-label">2002</span> <!-- 添加此处 -->
+    </div>
+
+      <div id="stats-chart"></div>
+
+      <div id="chart-header">
+          <button id="toggle-btn">Show Total</button>
+      </div>
+
+      <p id="source" style="margin-top: 20rem; font-size: 0.85rem; color: #888; text-align: center;">
+        Source: 
+        <a href="https://data.london.gov.uk/dataset/number-international-visitors-london" target="_blank" style="color: #888; text-decoration: underline;">
+          Number of International Visitors to London(ONS)
+        </a>
+      </p>
+
+
+  </div>      
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 

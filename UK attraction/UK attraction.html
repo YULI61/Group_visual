@@ -11,143 +11,203 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
+      /* 设定页面和地图全屏 & 禁止滚动 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* 去掉滚动条 */
+}
         /* 基础地图样式 */
         #map {
             width: 100%;
             height: 100vh;
         }
+       
+        #sidepanel {
+    width: 30%;
+    background-color: rgba(246, 241, 236, 0.6); 
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  #sidepanel-header hr {
+  border: 0;
+  height: 1px;
+  background-color: #555555;
+  margin: 8px 0;
+}
+
+
+  #sidepanel h2 {
+  font-family: 'Merriweather', serif;
+  margin: 10px 0 15px;
+  font-size: 26px;
+}
+
 
         /* 控制面板样式 */
         #panel {
-            position: absolute;
-            top: 20px;
+            top: 200px;
             left: 20px;
-            background-color: white;
-            padding: 10px;
+            background-color: transparent;
+            padding: 5px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            /* box-shadow: 0 2px 8px rgba(0,0,0,0.15); */
             font-family: sans-serif;
             font-size: 14px;
             z-index: 10;
         }
 
+        #sidepanel-header h2 {
+  font-family: 'Merriweather', serif;
+  margin: 20px 0;
+  font-size: 30px;
+}
+
+
         /* 图例样式 */
-        #legend h4 {
-            margin: 5px 0 10px;
-        }
+        #legend h3, #chartContainer h3, 
+#sizelegend h3 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
         .legend-item {
             display: flex;
             align-items: center;
             margin: 5px 0;
         }
         .legend-color-box {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
             border-radius: 50%;
         }
 
-        /* 游客数量面板样式 */
-        #regionalChartPanel {
-            position: absolute;
-            bottom: 80px;
-            left: 20px;
-            width: 500px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            padding: 10px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
+        #sizelegend-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 4px;
+  /* justify-content: center; */
+}
 
-        /* 滑块样式 */
-        #yearSlider {
-            width: 50%;
-            background-color: #ddd;
-            height: 8px;
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-        #yearSlider::-webkit-slider-thumb {
-            background-color: #00B8A9;
-        }
+.size-legend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+}
+.size-legend-circle {
+  background-color: #007cbf;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 6px;
+  align-items: center;  
+}
+
+.size-legend-label {
+  font: size 11px;
+  text-align: center;
+  color: #333;
+  text-align: center;  
+}
+
 
         /* 图表容器 */
         #chartContainer {
             width: 100%;
-            height: 250px;
+            height: 300px;
         }
+        #source {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  font-size: 0.85rem;
+  color: #888;
+  text-align: center;
+}
         
 /*
 
-#regionalChart {
+/* #regionalChart {
     transition: opacity 0.3s ease; /* 添加过渡效果 */
-}
+/* } */ */
     </style>
 </head>
 <body>
     <!-- 地图容器 -->
     <div id="map"></div>
     
-    <!-- 左侧控制面板 -->
-    <div id="panel">
-        
-        
-    <!-- 地区筛选框 -->
-<div>
-  <label id="regionlabel">Region: All</label><br>
-  <select id="regionfilter">
-    <option value="All">All</option>
-    <option value="North East">North East</option>
-    <option value="North West">North West</option>
-    <option value="Yorkshire and The Humber">Yorkshire and The Humber</option>
-    <option value="East Midlands">East Midlands</option>
-    <option value="West Midlands">West Midlands</option>
-    <option value="East of England">East of England</option>
-    <option value="London">London</option>
-    <option value="South East">South East</option>
-    <option value="South West">South West</option>
-  </select>
-</div>
-<!--        类别筛选框-->
-        <label id="categorylabel">Category: All</label><br>
-        <select id="categoryFilter">
-            <option value="All">All Categories</option>
-            <option value="Historic Buildings & Sites">Historic Buildings & Sites</option>
-            <option value="Museums & Galleries">Museums & Galleries</option>
-            <option value="Natural & Outdoor Attractions">Natural & Outdoor</option>
-            <option value="Transport & Industrial Heritage">Transport & Industrial</option>
-            <option value="Industrial & Craft Experiences">Industrial & Craft</option>
-            <option value="Modern Entertainment & Technology">Modern Entertainment</option>
-            <option value="Other & Miscellaneous">Other</option>
-        </select>
-        
-        <!-- 图例 -->
-        <div id="legend">
-            <h3> Attraction Categories</h3>
-            <div id="legend-content"></div>
-        </div>
-    </div>
+        <!-- 左侧控制面板 -->
+    <div id="sidepanel">   
+        <h2>Attractions in England</h2>
+        <hr />
+        <div id="panel">   
+                <!-- 地区筛选框 -->
+            <div>
+            <label id="regionlabel">Region: All</label><br>
+            <select id="regionfilter">
+                <option value="All">All</option>
+                <option value="North East">North East</option>
+                <option value="North West">North West</option>
+                <option value="Yorkshire and The Humber">Yorkshire and The Humber</option>
+                <option value="East Midlands">East Midlands</option>
+                <option value="West Midlands">West Midlands</option>
+                <option value="East of England">East of England</option>
+                <option value="London">London</option>
+                <option value="South East">South East</option>
+                <option value="South West">South West</option>
+            </select>
+            </div>
+            <!--        类别筛选框-->
+            <label id="categorylabel">Category: All</label><br>
+            <select id="categoryFilter">
+                <option value="All">All Categories</option>
+                <option value="Historic Buildings & Sites">Historic Buildings & Sites</option>
+                <option value="Museums & Galleries">Museums & Galleries</option>
+                <option value="Natural & Outdoor Attractions">Natural & Outdoor</option>
+                <option value="Transport & Industrial Heritage">Transport & Industrial</option>
+                <option value="Industrial & Craft Experiences">Industrial & Craft</option>
+                <option value="Modern Entertainment & Technology">Modern Entertainment</option>
+                <option value="Other & Miscellaneous">Other</option>
+            </select>
+            
+            <!-- 图例 -->
+            <div id="legend">
+                <h3> Attraction Categories</h3>
+                <div id="legend-content"></div>
+            </div>
+
+            <div id="sizelegend">
+              <h3>Visitor Count </h3>
+              <div id="sizelegend-content"></div>
+            </div>
+          </div>
+    
 
     <!-- 底部游客数量面板 -->
-    <div id="regionalChartPanel">
-        <h4> Top Attractions（Visitors by Year）</h4>
-        <label for="yearSlider"><strong>Year:</strong><span id="yearLabel">2023</span></label>
-        <input type="range" id="yearSlider" min="2018" max="2023" value="2023" step="1" />
-        <div id="chartContainer">
-            <canvas id="regionalChart"></canvas>
-        </div>
+            <!-- <label for="yearSlider"><strong>Year:</strong><span id="yearLabel">2023</span></label>
+            <input type="range" id="yearSlider" min="2018" max="2023" value="2023" step="1" /> -->
+            <div id="chartContainer">
+                <h3> Top Attractions（Visitors in 2023）</h3>
+                <canvas id="regionalChart"></canvas>
+            </div>
+            <p id="source" style="margin-top: 19rem; font-size: 0.85rem; color: #888; text-align: center;">
+                Source: 
+                <a href=" " target="_blank" style="color: #888; text-decoration: underline;">
+                  https://www.visitbritain.org/research-insights/england-visitor-attractions-latest
+                </a >
+              </p >
     </div>
-<!--
-    <div id="regionalChartPanel" style="position: absolute; bottom: 400px; left: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); width: 500px;">
-    <h4>Top 10 Attractions in Selected Region (2023 Visitors)</h4>
-    <div style="height: 300px;">
-        <canvas id="regionalChart"></canvas>
-    </div>
-</div>
--->
-
     <script>
         
         
@@ -159,9 +219,10 @@
         // 创建地图实例
         const map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/kundi7788/cm7sjozi3006a01sc42097gk7',
+            // 
+            style: 'mapbox://styles/mapbox/light-v11',
             center: [-4, 53],  // 初始中心点坐标
-            zoom: 5.8          // 初始缩放级别
+            zoom: 5.9          // 初始缩放级别
         });
         
         // 颜色映射
@@ -205,45 +266,43 @@ map.on('load', () => {
     generateId: true // 支持 feature state 操作
   });
     
-////      添加区域数据源
-//            map.addSource('regions', {
-//                type: 'geojson',
-//                data: 'data/boundaries.geojson' // 替换为你的数据路径
-//            });
-//            
-//            // 添加边界线图层
-//            map.addLayer({
-//                id: 'regions-layer-border',
-//                type: 'line',
-//                source: 'regions',
-//                paint: {
-//                    'line-color': '#999999',  // 设置边界颜色
-//                    'line-width': 0.5,// 设置边界线的宽度
-//                     'line-opacity': 0.5  // 设置边界线的透明度
-//                }
-//            });
+//      添加区域数据源
+           map.addSource('regions', {
+               type: 'geojson',
+               data: 'data/simplified_england.geojson' // 替换为你的数据路径
+           });
+           
+           // 添加边界线图层
+           map.addLayer({
+               id: 'regions-layer-border',
+               type: 'line',
+               source: 'regions',
+               paint: {
+                   'line-color': '#999999',  // 设置边界颜色
+                   'line-width': 1,// 设置边界线的宽度
+                    'line-opacity': 0.6,  // 设置边界线的透明度
+                    'line-dasharray': [4, 2]  // 4像素线 + 2像素间隔
+               }
+           });
 
   // 添加图层显示景点
   map.addLayer({
     id: 'attractions-layer',
     type: 'circle',
     source: 'attractions',
-    paint: {
-      'circle-radius': [
-    'case',
-    ['!', ['has', 'Visitors 2023']], 3,  // 如果没有Visitors 2023字段，则默认半径为3
-    ['<', ['to-number', ['get', 'Visitors 2023']], 1000], 2,  // 如果游客数量小于1000，则半径为5
-    ['<', ['to-number', ['get', 'Visitors 2023']], 10000], 3,  // 如果游客数量小于10000，则半径为9
-    ['<', ['to-number', ['get', 'Visitors 2023']], 50000], 4,  // 如果游客数量小于50000，则半径为12
-    ['<', ['to-number', ['get', 'Visitors 2023']], 100000], 8,  // 如果游客数量小于100000，则半径为15
-    ['<', ['to-number', ['get', 'Visitors 2023']], 500000], 12,  // 如果游客数量小于500000，则半径为18
-    ['<', ['to-number', ['get', 'Visitors 2023']], 1000000], 15,  // 如果游客数量小于500000，则半径为18
-    ['<', ['to-number', ['get', 'Visitors 2023']], 1500000], 20,  // 如果游客数量小于500000，
-    ['<', ['to-number', ['get', 'Visitors 2023']], 2000000], 25,  // 如果游客数量小于500000，
-    ['>=', ['to-number', ['get', 'Visitors 2023']], 4000000], 30,  // 如果游客数量大于5000000，则半径为20
-    2  // 默认半径为4
-],
-//                   
+    paint: { 
+'circle-radius': [
+  'case',
+  ['!', ['has', 'Visitors 2023']], 3,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 1000], 4,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 10000], 5,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 50000], 7,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 200000], 9,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 1000000], 14,
+  ['<', ['to-number', ['get', 'Visitors 2023']], 2000000], 20, 
+  ['>=', ['to-number', ['get', 'Visitors 2023']], 4000000], 30,
+  2
+],              
                     'circle-opacity': 0.7,
                     'circle-color': [
                         'match',
@@ -254,28 +313,56 @@ map.on('load', () => {
     }
   });
 
-  // 记录完整地图边界，用于后续 reset 缩放
-  map.once('idle', () => {
-    fullMapBounds = map.getBounds();
-  });
+        // 记录完整地图边界，用于后续 reset 缩放
+        map.once('idle', () => {
+          fullMapBounds = map.getBounds();
+        });
 
-  // 异步加载数据用于过滤逻辑（非图层部分）
-  fetch('data/attractions_filtered.geojson')
-    .then(res => res.json())
-    .then(data => {
-      allAttractions = data.features;
-      // 添加延迟确保DOM就绪（仅用于调试）
-    setTimeout(() => {
-      updateRegionalChart('All');
-      initApp();
-    }, 100);
-    });
-    
-    // 新增：初始化时渲染全国数据
-      updateRegionalChart('All'); 
+        // 异步加载数据用于过滤逻辑（非图层部分）
+        fetch('data/attractions_filtered.geojson')
+          .then(res => res.json())
+          .then(data => {
+            allAttractions = data.features;
+            // 添加延迟确保DOM就绪（仅用于调试）
+          setTimeout(() => {
+            updateRegionalChart('All');
+            initApp();
+          }, 100);
+          });
+          
+          // 新增：初始化时渲染全国数据
+            updateRegionalChart('All'); 
 
-  // 启动初始交互逻辑（图例/按钮/筛选等）
-  initApp();
+        // 启动初始交互逻辑（图例/按钮/筛选等）
+        initApp();
+      });
+
+      // 图例
+      const radiusMapping = [
+  { label: '< 1k', value: 4 },
+  { label: '1k–10k', value: 5 },
+  { label: '10k–50k', value: 7 },
+  { label: '50k–200k', value: 9 },
+  { label: '200k–1M', value: 14 },
+  { label: '1M–2M', value: 20 },
+  { label: '> 4M', value: 30 }
+];
+const sizeLegend = document.getElementById('sizelegend-content');
+
+radiusMapping.forEach(({ label, value }) => {
+    const legendItem = document.createElement('div');
+    legendItem.classList.add('size-legend-item');
+    legendItem.innerHTML = `
+        <div class="size-legend-circle" style="
+            width: ${value}px;
+            height: ${value}px;
+            background-color: #8466C6 ;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        "></div>
+        <span class="size-legend-label">${label}</span>
+    `;
+    sizeLegend.appendChild(legendItem);
 });
 
 // ===================== 3. 设置筛选功能 =====================
@@ -312,24 +399,58 @@ function applyFilters() {
   console.log("Applied Filter:", finalFilter);
   map.setFilter('attractions-layer', finalFilter);
 
-  // 视图自动缩放至所选区域
-  if (selectedRegion !== 'All') {
+
+  // test 
+   // 视图自动缩放至所选区域
+   if (selectedRegion !== 'All') {
+    // 检查数据源状态
+    if (!map.getSource('attractions')) {
+      console.error('数据源未初始化');
+      return;
+    }
+    if (!map.isSourceLoaded('attractions')) {
+      console.error('数据尚未加载完成');
+      return;
+    }
+
+    // 查询全量数据
     const features = map.querySourceFeatures('attractions', {
-      filter: ['==', ['get', 'Region'], selectedRegion]
+      filter: ['==', ['get', 'Region'], selectedRegion],
+      validate: false // 关键修改
     });
+
+    console.log(`[DEBUG] 区域 ${selectedRegion} 查询到要素数量:`, features.length);
 
     if (features.length > 0) {
       const bounds = new mapboxgl.LngLatBounds();
-      features.forEach(f => bounds.extend(f.geometry.coordinates));
-      map.fitBounds(bounds, { padding: 40, maxZoom: 9 });
+      features.forEach(f => {
+        if (f.geometry?.coordinates) {
+          bounds.extend(f.geometry.coordinates);
+        }
+      });
+      
+      if (!bounds.isEmpty()) {
+        map.fitBounds(bounds, { 
+          padding: 40, 
+          maxZoom: 9,
+          duration: 1000 // 添加平滑过渡
+        });
+      } else {
+        console.warn('边界计算失败：无有效坐标');
+      }
+    } else {
+      console.warn('该区域无数据');
+      // 可选：重置视图或显示提示
+      map.fitBounds(fullMapBounds, { padding: 40 });
     }
   } else {
     map.fitBounds(fullMapBounds, { padding: 40 });
   }
-    
-     // 新增：更新区域图表
-    updateRegionalChart(selectedRegion);
+
+  // 更新区域图表
+  updateRegionalChart(selectedRegion);
 }
+  
 
 // ===================== 4. 悬停与弹窗 =====================
 function handleFeatureHover(e) {
@@ -359,7 +480,18 @@ function handleFeatureHover(e) {
     const feature = e.features[0];
     hoverPopup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
       .setLngLat(e.lngLat)
-      .setHTML(`<strong>${feature.properties.Name}</strong><br>${feature.properties.Main_Category}`)
+      // .setHTML(`<strong>${feature.properties.Name}</strong><br>${feature.properties.Main_Category}`)
+      .setHTML(`
+      <div style="font-size: 12px">
+        <strong>${feature.properties.Attraction || "Unknown"}</strong><br>
+        Category: ${feature.properties.Main_Category || "N/A"}<br>
+        Visitors: ${
+          feature.properties["Visitors 2023"]
+            ? Number(feature.properties["Visitors 2023"]).toLocaleString()
+            : "N/A"
+        }
+      </div>
+    `)
       .addTo(map);
   }
 }
@@ -385,6 +517,7 @@ function initApp() {
     }
   });
 }
+
      
         // ===================== 修改后的代码 =====================
 // 创建或更新区域柱状图（增强版）
@@ -393,7 +526,8 @@ function updateRegionalChart(region) {
     const features = region === 'All' ? 
         allAttractions : 
         map.querySourceFeatures('attractions', {
-            filter: ['==', ['get', 'Region'], region]
+            filter: ['==', ['get', 'Region'], region],
+            validate: false // 关键修改
         });
 
     // 数据去重处理（使用Map保证唯一性）
@@ -430,59 +564,65 @@ function updateRegionalChart(region) {
 
     // 创建新图表（优化版）
     regionalChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: processedData.map(d => truncateLabel(d.displayName, 25)),
-            datasets: [{
-                label: 'Visitors (2023)',
-                data: processedData.map(d => d.visitors),
-                backgroundColor: '#00B8A9',
-                borderColor: '#007B73',
-                borderWidth: 1,
-                barThickness: 12,
-                borderRadius: 4 // 添加圆角
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Visitor Count',
-                        padding: 10
-                    },
-                    ticks: {
-                        callback: value => value.toLocaleString()
-                    }
+    type: 'bar',
+    data: {
+        labels: processedData.map(d => truncateLabel(d.displayName, 25)),  // attraction 名作为 X 轴标签
+        datasets: [{
+            label: 'Visitors (2023)',
+            data: processedData.map(d => d.visitors),
+            backgroundColor: '#9B7FDC',
+            borderColor: '#8466C6',
+            borderWidth: 1,
+            barThickness: 20,
+            borderRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Attractions',
+                    padding: 5
                 },
-                y: {
-                    ticks: {
-                        autoSkip: false,
-                        font: {
-                            size: 12
-                        },
-                        padding: 8
-                    }
+                ticks: {
+                    autoSkip: false,
+                    maxRotation: 45,
+                    minRotation: 30
                 }
             },
-            plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    titleFont: { size: 14 },
-                    bodyFont: { size: 12 },
-                    callbacks: {
-                        title: context => processedData[context[0].dataIndex].displayName,
-                        label: context => `${context.parsed.x.toLocaleString()} visitors`
-                    }
+            y: {
+    beginAtZero: true,
+    title: {
+        display: true,
+        text: 'Visitor Count (millions)',
+        padding: 10
+    },
+    ticks: {
+        callback: value => {
+            if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + 'M';
+            if (value >= 1_000) return (value / 1_000).toFixed(1) + 'K';
+            return value;
+        }
+    }
+}
+        },
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                backgroundColor: 'rgba(0,0,0,0.8)',
+                titleFont: { size: 14 },
+                bodyFont: { size: 12 },
+                callbacks: {
+                    title: context => processedData[context[0].dataIndex].displayName, // 展示原始名称
+                    label: context => `${context.parsed.y.toLocaleString()} visitors`  // 注意从 x 改成 y
                 }
             }
         }
-    });
+    }
+});
 }
 
 // 辅助函数：名称规范化

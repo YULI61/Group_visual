@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-assembly/v1.3.0/assembly.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <style>
       body {
         margin: 0;
@@ -31,19 +32,19 @@
         
     .legend {
       position: absolute;
-      bottom: 40px;
-      left: 50%;
+      bottom: 6%;
+      left: 58%;
       transform: translateX(-50%);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.6);
       padding: 8px 16px;
       border-radius: 8px;
       display: flex;
       flex-wrap: wrap; /* ← 允许换行 */
-      gap: 12px 16px;  /* 行间距和列间距 */
+      gap: 6px 12px;  /* 行间距和列间距 */
       font-size: 13px;
       font-family: sans-serif;
-      box-shadow: 0 0 4px rgba(0,0,0,0.2);
-      max-width: 1000px; /* 可选限制宽度 */
+      box-shadow: 0 0 4px rgba(0,0,0,0);
+      max-width: 1300px; /* 可选限制宽度 */
       justify-content: center; /* 居中对齐 */
     }
 
@@ -80,7 +81,7 @@
 }
 
 .btn.active {
-  background: #1e88e5;
+  background: #5c3fc1     ; 
   color: #fff;
 }
         
@@ -96,6 +97,58 @@
   background-size: 12px;
 }
         
+.sidebar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20%; /* 和你侧边栏内容差不多宽 */
+  background-color: rgba(246, 241, 236, 0.6); /* 半透明白 */
+  z-index: 0; /* 显示在最下层 */
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 保证你的按钮、表单显示在上面 */
+.absolute, .btn, #type-select {
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20%;
+  padding: 20px;
+  z-index: 1; /* 保证文字在背景上层 */
+  pointer-events: none; /* 如果你不想它挡住用户交互，设置这个 */
+}
+
+#panel-header {
+  color: rgb(0, 0, 0);
+  margin-bottom: 15px;
+}
+
+#panel-header h2 {
+  font-family: 'Merriweather', serif;
+  margin: 20px 0;
+  font-size: 30px;
+}
+
+#panel-header hr {
+  border: 0;
+  height: 1px;
+  background-color: #555555;
+  margin: 8px 0;
+}
+
+.panel-description {
+  font-size: 14px;
+  color: #000000;
+  margin: 2px 0;
+}
+             
         
     </style>
   </head>
@@ -104,7 +157,36 @@
   <body>
     <div id="map"></div>
 
-    <div class="absolute fl my24 mx24 py24 px24 bg-gray-faint round">
+  <!-- 背景框（只负责背景） -->
+  <div class="sidebar-bg"></div>
+
+  <!-- 左侧内容区域：放在背景之上 -->
+  <div class="sidebar-content">
+    <div id="panel-header">
+      <h2>Isochrone Map</h2>
+      <hr />
+        <p class="panel-description" style="color: #333;  line-height: 1.6;">
+          As more visitors seek to explore local culture and discover hidden spots, we analyzed areas within a 
+          <strong style="color: #5c3fc1   ; font-family: 'Merriweather', serif;">15-minute walk</strong> from attractions in 
+          <strong style="color: #5c3fc1   ;font-family: 'Merriweather', serif;">nine London boroughs</strong>: Westminster, Camden, Kensington and Chelsea, City of London, Southwark, Lambeth, Islington, Tower Hamlets, and Hackney.
+        </p>
+
+        <p class="panel-description" style="color: #333; line-height: 1.6; margin-top: 12px;">
+          The map includes a wider range of points of interest, like art venues, theaters, and shopping areas, with filters and personalized suggestions to help visitors plan easier and better.
+        </p>
+        
+        <p id="source" style="margin-top: 22rem; font-size: 0.85rem; color: #888; text-align: left;">
+          Attraction Data Source: <br><a href="https://www.alva.org.uk/details.cfm?p=63" target="_blank" style="color: #888; text-decoration: underline;">ALVA (Association of Leading Visitor Attractions)</a><br>
+          POI Data Source: <br><a href="https://wiki.openstreetmap.org/wiki/Overpass_API" target="_blank" style="color: #888; text-decoration: underline;">Overpass API &amp; OpenStreetMap Contributors</a> | Updated: Nov 2024
+        </p>
+      
+        
+    </div>
+  </div>
+      
+    <div class="absolute bg-gray-faint round"
+         style="top: 42%; left: 24px; padding: 20px; border: 1px solid #000000; width: 290px; height: 170px; display: flex; justify-content: center; align-items: center;">
+
       <form id="params">
         <h4 class="txt-m txt-bold mb6">Choose a travel mode:</h4>
         <div class="mb12 mr12 toggle-group align-center">
@@ -140,7 +222,7 @@
       </form>
     </div>
 
-    <div class="absolute z1" style="top: 230px; left: 22px;">
+    <div class="absolute z1" style="top: 63%; left: 22px;">
       <button id="mode-single" class="btn mr6">Single Mode</button>
       <button id="mode-all" class="btn mr6">All Mode</button>
       <button id="mode-type" class="btn mr6">Type Mode</button>
@@ -170,7 +252,7 @@
       const map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/light-v11', // stylesheet
-        center: [-0.1276, 51.5074], // starting position [lng, lat]
+        center: [-0.15, 51.5074], // starting position [lng, lat]
         zoom: 11.5 // starting zoom
       });
 
