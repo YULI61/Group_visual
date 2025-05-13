@@ -1,0 +1,298 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #000000;
+  background-color: #f6f1ec;
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: flex-end; /* 居中菜单项 */
+  align-items: center;
+  padding: 1rem 3rem;
+  z-index: 999;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar > nav > ul > li > a {
+  mix-blend-mode: difference;
+}
+
+
+/* 普通（浅色）导航栏文字样式 */
+.navbar a {
+  color: #333; /* 默认深灰字 */
+}
+
+/* 深色模式导航栏文字样式（用于首页） */
+.navbar.dark a {
+  color: #fff !important;
+}
+
+.navbar.dark .dropdown-menu {
+  background-color: #222;  /* 深背景 */
+  border-color: #444;
+}
+
+.navbar.dark .dropdown-menu a {
+  color: #eee !important;
+  background-color: #222 !important;
+}
+
+.navbar.dark .dropdown-menu a:hover {
+  background-color: #333 !important;
+  color: #ffcc99 !important; /* hover 色可以换成你的主题色 */
+}
+
+
+
+.navbar ul li a:hover {
+  color: #8E6CFF;
+}
+
+.navbar ul li a.active {
+  position: relative;
+  font-weight: 800;
+}
+.navbar ul li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #8E6CFF;
+}
+
+
+
+.section {
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  
+}
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+#fullpage {
+  height: 100%;
+}
+
+.fullpage-section {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.fullpage-section iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Styles for the demo */
+h1 {
+  font-size: 6em;
+  font-size: calc(2em + 2vw);
+  font-family: arial, helvetica;
+  margin: 0;
+}
+
+.intro p {
+  width: 50%;
+  margin: 0.5em auto;
+  font-size: 1.65em;
+}
+
+.section iframe {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  display: block;
+  pointer-events: none;  /* ✅ 禁止鼠标事件传入 iframe */
+}
+.section iframe::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* Overwriting styles for the navigation dots */
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.home-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 10;
+  font-family: 'Inter', sans-serif;
+  pointer-events: auto;
+}
+
+.home-title-main {
+  font-family: 'Dancing Script', cursive;
+  font-size: 6rem;
+  text-align: center;
+  line-height: 1.2;
+  margin: 0;
+  display: inline-block;
+}
+
+
+h2.home-subtitle {
+  font-family: 'Merriweather', serif;
+  font-size: 1.5rem;
+  max-width: 90%;
+  margin-top: 2rem;
+  line-height: 1;
+}
+
+
+.home-explore-btn {
+  display: block;
+  margin: 1.5rem auto 2rem auto; 
+  padding: 0.75rem 2rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+
+
+.handwriting {
+  font-family: 'Dancing Script', cursive;
+}
+
+
+
+.nav-dropdown {
+  position: relative;
+}
+
+/* 默认隐藏菜单 */
+.navbar .dropdown-menu {
+  display: none; /* 🔥 默认不显示 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #f6f1ec;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 200px;
+  z-index: 9999;
+  flex-direction: column;
+}
+
+/* 鼠标悬停时显示菜单 */
+.nav-dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+.navbar .dropdown-menu li {
+  width: 100%;
+}
+
+.navbar .dropdown-menu a {
+  display: block;
+  padding: 6px 16px;
+  font-size: 15px;
+  color: #333;
+  background-color: #f6f1ec;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar .dropdown-menu a:hover {
+  background-color: #e9e2db;
+  color: #c85a2e;
+  text-decoration: underline;
+}
+
+
+/* 默认（浅色）模式 */
+.navbar .dropdown-menu a {
+  background-color: #f6f1ec;
+  color: #333;
+  padding: 6px 16px;
+  font-size: 15px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar .dropdown-menu a:hover {
+  background-color: #e9e2db;
+  color: #c85a2e;
+}
+
+/* 深色主题下 dropdown 样式（覆盖一切） */
+.navbar.dark .dropdown-menu {
+  background-color: #333;
+  border-color: #444;
+}
+
+.navbar.dark .dropdown-menu a {
+  background-color: #333 !important;
+  color: #eee !important;
+}
+
+.navbar.dark .dropdown-menu a:hover {
+  background-color: #444 !important;
+  color: #ffcc99 !important;
+}
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel in London</title>
+
+  <!-- 引入 fullPage 样式 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css" />
+  <!-- 你自己的样式 -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+
+</head>
+
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <nav>
+      <ul id="menu">
+        <li><a href="#home"class="nav-link">Home</a></li>
+        <li><a href="#intro"class="nav-link">Intro</a></li>
+        <li><a href="#background"class="nav-link">Background</a></li>
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link">Attractions ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="#uk-attraction" class="nav-link">UK Attraction</a></li>
+            <li><a href="#chart-statistics" class="nav-link">Chart Statistics</a></li>
+            <li><a href="#london-attraction" class="nav-link">London Attraction</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#personalised-trip"class="nav-link">Personalised Trip</a></li>
+        <li><a href="#team"class="nav-link">Team</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- fullPage Sections -->
+  <div id="fullpage">
+    <div class="section" data-anchor="home">
+      <iframe src="https://yuli61.github.io/Group_visual/first_page/" frameborder="0"></iframe>
+      <div class="home-overlay">
+        <h1 class="home-title-main">Good Trip in London<span class="handwriting"></span></h1>
+        <!-- <h2 class="home-subtitle">Discover culture, history, and hidden gems.</h2> -->
+        <a href="#intro"><button class="home-explore-btn">Let’s take off!</button></a>
+        
+      </div>  
+    </div>
+    <div class="section" data-anchor="intro">
+      <iframe src="https://yuli61.github.io/Group_visual/fight_flow/index.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="background">
+      <iframe src="https://yuli61.github.io/Group_visual/background/background.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="uk-attraction">
+      <iframe src="https://yuli61.github.io/Group_visual/UK%20attraction/UK%20attraction.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="chart-statistics">
+      <iframe src="https://yuli61.github.io/Group_visual/chart statistics/3charts.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="london-attraction">
+      <iframe src="https://yuli61.github.io/Group_visual/15mins_zone/15mins_zone.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="personalised-trip">
+      <iframe src="https://yuli61.github.io/Group_visual/london_travel_guidepage/interaction_travel_page.html" frameborder="0"></iframe>
+    </div>
+    <div class="section" data-anchor="team">
+      <iframe src="https://yuli61.github.io/Group_visual/team/" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <!-- 引入 fullPage 脚本 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
+
+<script>
+  // 初始化 fullPage.js
+  var myFullpage = new fullpage('#fullpage', {
+    anchors: ['home', 'intro', 'background', 'uk-attraction', 'chart-statistics','london-attraction', 'personal-trip', 'team'],
+    menu: '#menu',   
+    navigation: true,
+    navigationPosition: 'right',
+    navigationTooltips: [],
+    showActiveTooltip: false,
+    controlArrows: false,
+    autoScrolling: true,
+    scrollHorizontally: true,
+    afterLoad: function(origin, destination, direction) {
+      // 禁用所有 iframe
+      document.querySelectorAll('.section iframe').forEach((iframe) => {
+        iframe.style.pointerEvents = 'none';
+      });
+
+      // 启用当前 section 的 iframe
+      const currentSection = destination.item;
+      const currentIframe = currentSection.querySelector('iframe');
+      if (currentIframe) {
+        currentIframe.style.pointerEvents = 'auto';
+      }
+
+      // 设置导航下划线状态
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      const currentAnchor = destination.anchor;
+      const activeLink = document.querySelector(`.nav-link[href="#${currentAnchor}"]`);
+      if (activeLink) activeLink.classList.add('active');
+
+      // 设置导航栏颜色
+      const lightSections = ['home'];
+      const navbar = document.querySelector('.navbar');
+      if (lightSections.includes(currentAnchor)) {
+        navbar.classList.add('dark');
+      } else {
+        navbar.classList.remove('dark');
+      }
+
+      // 隐藏/显示右侧点点
+      const nav = document.getElementById('fp-nav');
+      if (destination.anchor === 'home') {
+        nav.style.opacity = '0';
+        nav.style.pointerEvents = 'none';
+      } else {
+        nav.style.opacity = '1';
+        nav.style.pointerEvents = 'auto';
+      }
+    }
+  });
+
+
+</script>
+
+
+</body>
+</html>
