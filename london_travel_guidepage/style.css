@@ -3,6 +3,7 @@ body, html {
   padding: 0;
   height: 100%;
   overflow-x: hidden;
+  overflow: hidden;
   font-family: Arial, sans-serif;
 }
 
@@ -16,9 +17,10 @@ body, html {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
   height: 100vh;
-  background-color: #f1f1f1;
+  background-color: #f6f1ec;
+  color: #333333;
   overflow: hidden;
 }
 
@@ -50,7 +52,8 @@ body, html {
 
 /* Lucy（左侧气泡） */
 .bubble.assistant {
-  background-color: #e0e0e0;
+  background-color: #ffffff;
+  color: #333333;
   align-self: flex-start; /* 靠左 */
   text-align: left;
   border-top-left-radius: 4px;
@@ -59,7 +62,7 @@ body, html {
 
 /* 用户（右侧气泡） */
 .bubble.user {
-  background-color: #e28b6a;
+  background-color: #e28c6a83;
   color: white;
   align-self: flex-end;   /* 靠右 */
   text-align: left;
@@ -138,7 +141,7 @@ body, html {
 /*开始键 */
 
 .start-btn {
-  background-color: #e28b6a;   /* 你指定的主色 */
+  background-color: #5b3fc1da;   /* 你指定的主色 */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -149,28 +152,66 @@ body, html {
 }
 
 .start-btn:hover {
-  background-color: #935c46;  /* 悬停时的颜色 */
+  background-color: #3f2aa3;  /* 悬停时的颜色 */
 }
 
 .animation-panel {
-  width: 50%;
+  width: 70%;
   background: #ffffff;
+  display: flex;
+  flex-direction: column; /* ✅ 垂直排列子元素 */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.animation-text {
+  flex: 0 0 40%;            /* 占据上方 40% 高度 */
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  color: #000;;
+  font-family: 'Merriweather', serif;
+  margin-top: 40px;
+}
+
+.animation-text h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.animation-text p {
+  font-size: 16px;
+  color: #555555;
+}
+
+.animation-visual {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  margin-top: -200px;
 }
 
 .demo-img {
-  max-width: 90%;
+  max-width: 60%;
+  height: auto;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 #guide-section {
-  height: 100vh;
   background-color: #eef2f7;
-  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  display: none; /* 初始不显示 */
+  display: none;        /* ✅ 初始隐藏 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100vh;
 }
+

@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>伦敦个性化旅行</title>
+  <title>travel gide page</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -29,14 +29,31 @@
 
   </div>
 
-  <!-- 右侧动画区域 -->
-  <div class="animation-panel">
-    <img src="demo.png" alt="示例动画" class="demo-img">
+  <!-- 右侧区域 -->
+<div class="animation-panel">
+  <div class="animation-text">
+    <h2>Explore London, In Your Way!</h2>
+  <p>
+    London is full of world-famous landmarks and hidden gems.
+    But what if you could discover them in a route tailored just for you?
+  </p>
+  <p>
+    This site helps you generate a walking route that connects the places you love.
+  </p>
+  <p style="margin-top: 20px; font-weight: bold; color: #f36b1c;">
+    Click the paper plane button below the left to start your conversation with trip assistant!
+  </p>
+</div>
+
+  
+  <div class="animation-visual">
+    <img src="demo.gif" alt="Demo animation" class="demo-img">
   </div>
 </div>
 
+
 <!-- 地图导览页面：嵌入 React 应用 -->
-<section id="guide-section" style="height: 100vh; padding: 0; margin: 0;">
+<section id="guide-section">
   <iframe
     src="https://casa0003.vercel.app/"
     width="100%"
@@ -45,6 +62,26 @@
     style="border: none; display: block;"
     allowfullscreen
   ></iframe>
+
+  <button
+    onclick="scrollToTop()"
+    style="
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #5c3fc1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 10;
+    "
+  >
+    Back
+  </button>
 </section>
 
 
