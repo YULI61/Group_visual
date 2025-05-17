@@ -12,44 +12,42 @@
 </head>
 <body>
   <div id="map"></div>
+
   <div id="chart-panel">
 
     <div id="panel-header">
       <h2>International Flow to London</h2>
       <hr />
-      <p class="panel-description">
-      This panel shows the trend of international visitors to London from 2002 to 2023.
-      Please note that data for 2020 is unavailable.
-      Over time, the number of visitors generally increased, reflecting London's strong appeal to global tourists.
-      Despite the disruption caused by the COVID-19 pandemic, the following years saw a steady recovery in tourism, underscoring the sector's resilience and its vital role in the city's economy.</p>
+      <p class="panel-description">This panel shows the trend of international visitors to London from 2002 to 2023.
+        Please note that data for 2020 is unavailable.
+        Over time, the number of visitors generally increased, reflecting London's strong appeal to global tourists.
+        Despite the disruption caused by the COVID-19 pandemic, the following years saw a steady recovery in tourism, underscoring the sector's resilience and its vital role in the city's economy.</p>
     </div>
 
-    <div id="chart-container">
-      <canvas id="line-chart"></canvas>
-    </div>  
 
-    <!-- 在 index.html 的 timeline-controls 部分添加年份显示 -->
+    <!-- Timeline Controls -->
     <div id="timeline-controls">
       <button id="play-btn">▶</button>
       <input type="range" id="year-slider" min="2002" max="2023" step="1" value="2002">
-      <span id="year-label">2002</span> <!-- 添加此处 -->
+      <span id="year-label">2002</span>
     </div>
 
-      <div id="stats-chart"></div>
+    <!-- Bar / Line Chart -->
+    <div id="stats-chart"></div>
 
-      <div id="chart-header">
-          <button id="toggle-btn">Show Total</button>
-      </div>
+    <!-- Toggle Button -->
+    <div id="chart-header">
+      <button id="toggle-btn">Show Total</button>
+    </div>
 
-      <p id="source" style="margin-top: 20rem; font-size: 0.85rem; color: #888; text-align: center;">
-        Source: 
-        <a href="https://www.visitbritain.org/research-insights/inbound-visits-and-spend-annual-regional" target="_blank" style="color: #888; text-decoration: underline;">
-          VisitBritain-Inbound Visits and Spend (Annual, Regional)
-        </a>
-      </p>
+    <p id="source">
+      Source: 
+          <a href="https://www.visitbritain.org/research-insights/inbound-visits-and-spend-annual-regional" target="_blank" style="color: #888; text-decoration: underline;">
+            VisitBritain-Inbound Visits and Spend
+    </p>
 
+  </div>
 
-  </div>      
 
     <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 

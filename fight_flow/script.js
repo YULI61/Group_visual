@@ -50,8 +50,10 @@ function startAnimation() {
           to: route.to,
           startTime: now,
           duration,
-          color: route.color
+          color: route.color,
+          width: route.width 
         });
+
         
       }
     }
@@ -137,16 +139,27 @@ async function loadData() {
 
 }
 
+
+
+
 function setupRoutes(year) {
   const data = visitorsData[year];
   const duplicated = [];
+
+  // 👉 添加：映射函数，自动将访客人数映射到 1-6 像素宽
+  function scaleWidth(visitors, minVisitors = 100, maxVisitors = 3500, minW = 1, maxW = 15) {
+    const clamped = Math.max(minVisitors, Math.min(visitors, maxVisitors));
+    return ((clamped - minVisitors) / (maxVisitors - minVisitors)) * (maxW - minW) + minW;
+  }
 
   data.forEach((entry, i) => {
     const from = [entry.lng, entry.lat];
     const to = LONDON_COORDS;
     const visitors = entry.visitors;
     const copies = visitors > 0 ? 
-      Math.min(Math.max(1, Math.floor(visitors / 100)), 10) : 0; 
+      Math.min(Math.max(1, Math.floor(visitors / 100)), 10) : 0;
+
+    const width = scaleWidth(visitors);  // 👈 计算自动宽度
 
     for (let j = 0; j < copies; j++) {
       duplicated.push({
@@ -155,13 +168,13 @@ function setupRoutes(year) {
         visitors,
         emitInterval: 10000 / Math.max(1, copies),
         lastEmit: 0,
-        color: ' #f36b1c'
+        color: '#f36b1c',
+        width: width  // 👈 加入粒子宽度
       });
     }
   });
 
   routes = duplicated;
-
 
   const arcFeatures = [];
   const uniqueRoutes = new Map();
@@ -174,6 +187,9 @@ function setupRoutes(year) {
         geometry: {
           type: 'LineString',
           coordinates: generateArcLine(r.from, r.to)
+        },
+        properties: {
+          width: r.width  // 👈 加入轨道宽度
         }
       });
     }
@@ -191,11 +207,11 @@ function setupRoutes(year) {
       type: 'line',
       source: 'lines',
       paint: {
-        'line-color': '#8E6CFF',     
-        'line-width': 2,
+        'line-color': '#8E6CFF',
+        'line-width': ['get', 'width'],  // 👈 根据属性动态宽度
         'line-opacity': 0.8,
-        'line-blur': 1            
-      }      
+        'line-blur': 1
+      }
     });
   } else {
     map.getSource('lines').setData(arcLineData);
@@ -211,22 +227,21 @@ function setupRoutes(year) {
     });
 
     map.addLayer({
-        id: 'particles',
-        type: 'line',
-        source: 'particles',
-        paint: {
-            'line-color': ['get', 'color'], 
-            'line-opacity': ['get', 'opacity'],
-            'line-width': 2,
-            'line-blur': 1                
-          }
-          
-      });
+      id: 'particles',
+      type: 'line',
+      source: 'particles',
+      paint: {
+        'line-color': ['get', 'color'],
+        'line-opacity': ['get', 'opacity'],
+        'line-width': ['get', 'width'],  // 👈 粒子轨迹也动态宽度
+        'line-blur': 1
+      }
+    });
   }
 
   startAnimation();
-
 }
+
   
 
 map = new mapboxgl.Map({
@@ -325,9 +340,9 @@ function startBarRace() {
         // fontWeight: 'normal'
        },
       left: 60,   
-      top: 50  
+      top: 10  
     },
-    grid: { top: 90, bottom: 30, left: 100, right: 80 },
+    grid: { top: 50, bottom: 20, left: 80, right: 70 },
     xAxis: {
       max: 'dataMax',
       axisLabel: {
@@ -465,7 +480,7 @@ function renderLineChart() {
       title: {
         text: 'Total Visitors Over Time (000s)',
         left: 60, 
-        top: 50,  
+        top: 10,  
         textStyle: {
           color: '#000000',
           fontSize: 18
@@ -486,12 +501,7 @@ function renderLineChart() {
           return `Year: ${year}<br/>Total: ${value}`;
         }
       },      
-      grid: {
-        top: 90,     
-        bottom: 30,
-        left: 80,
-        right: 40
-      },
+      grid: { top: 50, bottom: 20, left: 70, right: 70 },
       xAxis: {
         type: 'category',
         data: years,
