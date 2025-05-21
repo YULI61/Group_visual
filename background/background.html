@@ -121,15 +121,12 @@
     }
 
 
-    /* 新内容区域：初始隐藏 */
     .new-content {
       flex-grow: 1;
     position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      /* 你已有的样式继续保留： */
-/*      background-color: #dcd0c3;*/
       border: 2px solid #f36b1c;
       border-radius: 12px;
       padding: 30px;
@@ -137,8 +134,8 @@
       transition: all 0.6s ease;
       opacity: 0;
       display: block;
-      width: 100%;         /* 可选：限制宽度 */
-      max-width: 800px;   /* 可选 */
+      width: 100%;        
+      max-width: 800px;   
     }
     .new-content.show {
       opacity: 1;
@@ -163,7 +160,6 @@
 
     .next-step {
       font-size: 24px;
-/*      color: #1a73e8;*/
       font-weight: 600;
       margin-top: 30px;
       font-family: 'Merriweather', serif;    
@@ -209,7 +205,7 @@
       </p>
 
       <p class="next-step">
-         Let’s take a look at how attractions are distributed. ↗　
+         Let's take a look at how attractions are distributed. ↗
       </p>
     </div>
      
@@ -273,18 +269,18 @@ scales: {
       text: '% of Travellers'
     },
     ticks: {
-      color: '#333'  // Y轴刻度文字颜色
+      color: '#333'  
     },
     grid: {
-      color: '#aaa'  // Y轴线条颜色
+      color: '#aaa'  
     }
   },
   x: {
     ticks: {
-      color: '#333'  // X轴刻度文字颜色
+      color: '#333'  
     },
     grid: {
-      color: '#ddd'  // X轴线条颜色
+      color: '#ddd'  
     }
   }
 }
@@ -343,9 +339,9 @@ document.getElementById('submit').addEventListener('click', () => {
       borderColor: ['#666', '#999'],
       borderWidth: 0,
         datalabels: {
-          anchor: 'end',         // 锚点在柱子顶部
-          align: 'start',        // 对齐到顶部外
-          offset: -20,            // 可选，往上再偏移一些
+          anchor: 'end',         
+          align: 'start',       
+          offset: -20,            
           color: '#000',
           font: { size: 14, weight: 'bold' },
           formatter: v => v + '%'

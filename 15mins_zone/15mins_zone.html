@@ -39,13 +39,13 @@
       padding: 8px 16px;
       border-radius: 8px;
       display: flex;
-      flex-wrap: wrap; /* ← 允许换行 */
-      gap: 6px 12px;  /* 行间距和列间距 */
+      flex-wrap: wrap; 
+      gap: 6px 12px;  
       font-size: 13px;
       font-family: sans-serif;
       box-shadow: 0 0 4px rgba(0,0,0,0);
-      max-width: 1300px; /* 可选限制宽度 */
-      justify-content: center; /* 居中对齐 */
+      max-width: 1300px; 
+      justify-content: center; 
     }
 
 
@@ -102,13 +102,13 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 20%; /* 和你侧边栏内容差不多宽 */
-  background-color: rgba(246, 241, 236, 0.6); /* 半透明白 */
-  z-index: 0; /* 显示在最下层 */
+  width: 20%; 
+  background-color: rgba(246, 241, 236, 0.6); 
+  z-index: 0;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 保证你的按钮、表单显示在上面 */
+
 .absolute, .btn, #type-select {
   position: relative;
   z-index: 1;
@@ -160,10 +160,8 @@
   <body>
     <div id="map"></div>
 
-  <!-- 背景框（只负责背景） -->
-  <div class="sidebar-bg"></div>
+    <div class="sidebar-bg"></div>
 
-  <!-- 左侧内容区域：放在背景之上 -->
   <div class="sidebar-content">
     <div id="panel-header">
       <h2>Isochrone Map</h2>
@@ -213,7 +211,7 @@
     </div>
   </form>
 
-  <!-- ✅ 把按钮和下拉框也移进来 -->
+
   <div style="margin-top: 10px;">
     <button id="mode-single" class="btn mr6">Single Mode</button>
     <button id="mode-all" class="btn mr6">All Mode</button>
@@ -232,7 +230,7 @@
     </select>
   </div>
 
-  <!-- 保留数据来源说明 -->
+
   <div style="margin-top: auto;">
     <p id="source" style="font-size: 0.85rem; color: #888; text-align: left;">
       Attraction Data Source: <br>
@@ -360,7 +358,7 @@
         };
 
         const legendEl = document.getElementById('legend');
-        legendEl.innerHTML = ''; // 清空旧图例
+        legendEl.innerHTML = ''; 
 
         Object.entries(typeColors).forEach(([name, color]) => {
           const div = document.createElement('div');
@@ -377,11 +375,11 @@
                 'circle-radius': 5,
                 'circle-color': [
                   'case',
-                  ['in', ',', ['get', 'Tags']], '#8B4513', // 如果有逗号，说明是多标签
+                  ['in', ',', ['get', 'Tags']], '#8B4513', 
                   ['match',
                     ['get', 'Tags'],
                     ...Object.entries(typeColors).flat(),
-                    '#cccccc' // 默认颜色
+                    '#cccccc' 
                   ]
                 ],
                 'circle-stroke-width': 1,
@@ -389,15 +387,13 @@
               }
             });
 
-  // 所有图层
-  const allLayers = map.getStyle().layers;
 
-  // 找出以 road- 开头且是 line 类型的图层
+  const allLayers = map.getStyle().layers;
   const roadLineLayers = allLayers
     .filter(l => l.id.startsWith('road-') && l.type === 'line')
     .map(l => l.id);
 
-  // 修改颜色
+
   roadLineLayers.forEach(layerId => {
     map.setPaintProperty(layerId, 'line-color', '#cccccc');
   });
@@ -410,7 +406,7 @@ map.on('click', 'attraction-points', (e) => {
   const coords = e.features[0].geometry.coordinates;
   lon = coords[0];
   lat = coords[1];
-  marker.setLngLat([lon, lat]).addTo(map);  // 添加到地图
+  marker.setLngLat([lon, lat]).addTo(map);  
   getIso();
 });
 
@@ -465,14 +461,14 @@ function setMode(newMode) {
 
   if (mode === 'all') {
     marker.remove();
-    map.getSource('attractions').setData(attractionData); // 恢复原始点
+    map.getSource('attractions').setData(attractionData); 
     getAllIsos();
   } else if (mode === 'type') {
     marker.remove();
     const selectedType = document.getElementById('type-select').value;
     getIsosByType(selectedType);
   } else if (mode === 'single') {
-    map.getSource('attractions').setData(attractionData); // 恢复原始点
+    map.getSource('attractions').setData(attractionData); 
     if (lon && lat) {
       marker.setLngLat([lon, lat]).addTo(map);
     }
@@ -503,14 +499,13 @@ async function getIsosByType(typeName) {
       const tags = f.properties.Tags.split(',').map(t => t.trim().toLowerCase());
 
       if (typeName === 'Mixed') {
-        return tags.length > 1; // 多个标签就算 Mixed
+        return tags.length > 1; 
       } else {
         return tags.includes(typeName.toLowerCase());
       }
     });
 
 
-  // 更新图层数据（只展示匹配点）
   map.getSource('attractions').setData({
     type: 'FeatureCollection',
     features: filtered
@@ -609,9 +604,6 @@ document.getElementById('mode-type').addEventListener('click', () => {
   setMode('type');
 });
 
-
-
-        
         
     </script>
   </body>

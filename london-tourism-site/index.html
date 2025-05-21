@@ -12,6 +12,11 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <style>
+    .fp-watermark {
+      display: none !important;
+    }
+  </style>
 
 
 </head>
@@ -34,6 +39,7 @@
         </li>
 
         <li><a href="#personalised-trip"class="nav-link">Personalised Trip</a></li>
+        <li><a href="#conclusion"class="nav-link">Conclusion</a></li>
         <li><a href="#team"class="nav-link">Recap & Team</a></li>
       </ul>
     </nav>
@@ -68,18 +74,20 @@
     <div class="section" data-anchor="personalised-trip">
       <iframe src="https://yuli61.github.io/Group_visual/london_travel_guidepage/interaction_travel_page.html" frameborder="0"></iframe>
     </div>
+    <div class="section" data-anchor="conclusion">
+      <iframe src="https://yuli61.github.io/Group_visual/conclusion.html" frameborder="0"></iframe>
+    </div>    
     <div class="section" data-anchor="team">
       <iframe src="team/index.html" frameborder="0"></iframe>
     </div>
   </div>
 
-  <!-- 引入 fullPage 脚本 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
 
 <script>
-  // 初始化 fullPage.js
+  // fullPage.js
   var myFullpage = new fullpage('#fullpage', {
-    anchors: ['home', 'intro', 'background', 'uk-attraction', 'chart-statistics','london-attraction', 'personal-trip', 'team'],
+    anchors: ['home', 'intro', 'background', 'uk-attraction', 'chart-statistics','london-attraction', 'personal-trip','conclusion', 'team'],
     menu: '#menu',   
     navigation: true,
     navigationPosition: 'right',
@@ -89,19 +97,16 @@
     autoScrolling: true,
     scrollHorizontally: true,
     afterLoad: function(origin, destination, direction) {
-      // 禁用所有 iframe
       document.querySelectorAll('.section iframe').forEach((iframe) => {
         iframe.style.pointerEvents = 'none';
       });
 
-      // 启用当前 section 的 iframe
       const currentSection = destination.item;
       const currentIframe = currentSection.querySelector('iframe');
       if (currentIframe) {
         currentIframe.style.pointerEvents = 'auto';
       }
 
-      // 设置导航下划线状态
       document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
       });
@@ -109,7 +114,6 @@
       const activeLink = document.querySelector(`.nav-link[href="#${currentAnchor}"]`);
       if (activeLink) activeLink.classList.add('active');
 
-      // 设置导航栏颜色
       const lightSections = ['home'];
       const navbar = document.querySelector('.navbar');
       if (lightSections.includes(currentAnchor)) {
@@ -118,7 +122,6 @@
         navbar.classList.remove('dark');
       }
 
-      // 隐藏/显示右侧点点
       const nav = document.getElementById('fp-nav');
       if (destination.anchor === 'home') {
         nav.style.opacity = '0';

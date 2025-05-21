@@ -125,13 +125,12 @@ async function loadData() {
   const slider = document.getElementById("year-slider");
   const playBtn = document.getElementById("play-btn");
   
-  // 在 script.js 的 loadData 函数中，确保更新逻辑正确
   slider.addEventListener("input", () => {
     const year = slider.value;
     cancelAnimationFrame(animationId);
     setupRoutes(year);
     updateBarChart(year); 
-    document.getElementById("year-label").textContent = year; // 确保此行存在
+    document.getElementById("year-label").textContent = year; 
   });
   slider.value = years[0];
   setupRoutes(years[0]);
@@ -146,7 +145,6 @@ function setupRoutes(year) {
   const data = visitorsData[year];
   const duplicated = [];
 
-  // 👉 添加：映射函数，自动将访客人数映射到 1-6 像素宽
   function scaleWidth(visitors, minVisitors = 100, maxVisitors = 3500, minW = 1, maxW = 15) {
     const clamped = Math.max(minVisitors, Math.min(visitors, maxVisitors));
     return ((clamped - minVisitors) / (maxVisitors - minVisitors)) * (maxW - minW) + minW;
@@ -159,7 +157,7 @@ function setupRoutes(year) {
     const copies = visitors > 0 ? 
       Math.min(Math.max(1, Math.floor(visitors / 100)), 10) : 0;
 
-    const width = scaleWidth(visitors);  // 👈 计算自动宽度
+    const width = scaleWidth(visitors);  
 
     for (let j = 0; j < copies; j++) {
       duplicated.push({
@@ -169,7 +167,7 @@ function setupRoutes(year) {
         emitInterval: 10000 / Math.max(1, copies),
         lastEmit: 0,
         color: '#f36b1c',
-        width: width  // 👈 加入粒子宽度
+        width: width  
       });
     }
   });
@@ -189,7 +187,7 @@ function setupRoutes(year) {
           coordinates: generateArcLine(r.from, r.to)
         },
         properties: {
-          width: r.width  // 👈 加入轨道宽度
+          width: r.width 
         }
       });
     }
@@ -208,7 +206,7 @@ function setupRoutes(year) {
       source: 'lines',
       paint: {
         'line-color': '#8E6CFF',
-        'line-width': ['get', 'width'],  // 👈 根据属性动态宽度
+        'line-width': ['get', 'width'],  
         'line-opacity': 0.8,
         'line-blur': 1
       }
@@ -233,7 +231,7 @@ function setupRoutes(year) {
       paint: {
         'line-color': ['get', 'color'],
         'line-opacity': ['get', 'opacity'],
-        'line-width': ['get', 'width'],  // 👈 粒子轨迹也动态宽度
+        'line-width': ['get', 'width'],  
         'line-blur': 1
       }
     });
