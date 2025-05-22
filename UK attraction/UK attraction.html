@@ -2,101 +2,97 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>UK Attractions Map (Layer Version)</title>
+    <title>England Attractions Map </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- 外部资源引入 -->
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <style>
-      /* 设定页面和地图全屏 & 禁止滚动 */
+   <style>
+/* Set full-screen layout and disable scrolling */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* 去掉滚动条 */
+  overflow: hidden;
 }
-        /* 基础地图样式 */
-        #map {
-            width: 100%;
-            height: 100vh;
-        }
-       
-        #sidepanel {
-    width: 30%;
-    background-color: rgba(246, 241, 236, 0.6); 
-    padding: 20px;
-    box-sizing: border-box;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow-y: hidden;
-    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
-  }
-  #sidepanel-header hr {
+
+/* Map container */
+#map {
+  width: 100%;
+  height: 100vh;
+}
+
+/* Side panel styling */
+#sidepanel {
+  width: 30%;
+  background-color: rgba(246, 241, 236, 0.6); 
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: hidden;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#sidepanel-header hr {
   border: 0;
   height: 1px;
   background-color: #555555;
   margin: 8px 0;
 }
 
-
-  #sidepanel h2 {
-  font-family: 'Merriweather', serif;
-  margin: 10px 0 15px;
-  font-size: 26px;
-}
-
-
-        /* 控制面板样式 */
-        #panel {
-            top: 200px;
-            left: 20px;
-            background-color: transparent;
-            padding: 5px;
-            border-radius: 8px;
-            /* box-shadow: 0 2px 8px rgba(0,0,0,0.15); */
-            font-family: sans-serif;
-            font-size: 14px;
-            z-index: 10;
-        }
-
-        #sidepanel-header h2 {
+#sidepanel h2,
+#sidepanel-header h2 {
   font-family: 'Merriweather', serif;
   margin: 20px 0;
   font-size: 30px;
 }
 
+/* Control panel styling */
+#panel {
+  top: 200px;
+  left: 20px;
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 14px;
+  z-index: 10;
+}
 
-        /* 图例样式 */
-        #legend h3, #chartContainer h3, 
+/* Legend section styling */
+#legend h3,
+#chartContainer h3,
 #sizelegend h3 {
   margin-bottom: 8px;
   font-size: 16px;
   font-weight: bold;
 }
-        .legend-item {
-            display: flex;
-            align-items: center;
-            margin: 5px 0;
-        }
-        .legend-color-box {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            border-radius: 50%;
-        }
 
-        #sizelegend-content {
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.legend-color-box {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+/* Size legend content */
+#sizelegend-content {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   padding-top: 4px;
-  /* justify-content: center; */
 }
 
 .size-legend-item {
@@ -105,28 +101,29 @@ html, body {
   align-items: center;
   width: 40px;
 }
+
 .size-legend-circle {
   background-color: #007cbf;
   border-radius: 50%;
   display: block;
   margin-bottom: 6px;
-  align-items: center;  
+  align-items: center;
 }
 
 .size-legend-label {
-  font: size 11px;
+  font-size: 11px;
   text-align: center;
   color: #333;
-  text-align: center;  
 }
 
+/* Chart container */
+#chartContainer {
+  width: 100%;
+  height: 300px;
+}
 
-        /* 图表容器 */
-        #chartContainer {
-            width: 100%;
-            height: 300px;
-        }
-        #source {
+/* Source label at the bottom */
+#source {
   position: absolute;
   bottom: 10px;
   left: 0;
@@ -135,109 +132,158 @@ html, body {
   color: #888;
   text-align: center;
 }
-        
-/*
-
-/* #regionalChart {
-    transition: opacity 0.3s ease; /* 添加过渡效果 */
-/* } */ */
-    </style>
+</style>
 </head>
 <body>
-    <!-- 地图容器 -->
-    <div id="map"></div>
-    
-        <!-- 左侧控制面板 -->
-    <div id="sidepanel">   
-        <h2>Attractions in England</h2>
-        <hr />
-        <div id="panel">   
-                <!-- 地区筛选框 -->
-            <div>
-            <label id="regionlabel">Region: All</label><br>
-            <select id="regionfilter">
-                <option value="All">All</option>
-                <option value="North East">North East</option>
-                <option value="North West">North West</option>
-                <option value="Yorkshire and The Humber">Yorkshire and The Humber</option>
-                <option value="East Midlands">East Midlands</option>
-                <option value="West Midlands">West Midlands</option>
-                <option value="East of England">East of England</option>
-                <option value="London">London</option>
-                <option value="South East">South East</option>
-                <option value="South West">South West</option>
-            </select>
-            </div>
-            <!--        类别筛选框-->
-            <label id="categorylabel">Category: All</label><br>
-            <select id="categoryFilter">
-                <option value="All">All Categories</option>
-                <option value="Historic Buildings & Sites">Historic Buildings & Sites</option>
-                <option value="Museums & Galleries">Museums & Galleries</option>
-                <option value="Natural & Outdoor Attractions">Natural & Outdoor</option>
-                <option value="Transport & Industrial Heritage">Transport & Industrial</option>
-                <option value="Industrial & Craft Experiences">Industrial & Craft</option>
-                <option value="Modern Entertainment & Technology">Modern Entertainment</option>
-                <option value="Other & Miscellaneous">Other</option>
-            </select>
-            
-            <!-- 图例 -->
-            <div id="legend">
-                <h3> Attraction Categories</h3>
-                <div id="legend-content"></div>
-            </div>
+    <!-- Map Container -->
+<div id="map"></div>
 
-            <div id="sizelegend">
-              <h3>Visitor Count </h3>
-              <div id="sizelegend-content"></div>
-            </div>
-          </div>
-    
+<!-- Left Side Control Panel -->
+<div id="sidepanel">   
+  <h2>Attractions in England</h2>
+  <hr />
 
-    <!-- 底部游客数量面板 -->
-            <!-- <label for="yearSlider"><strong>Year:</strong><span id="yearLabel">2023</span></label>
-            <input type="range" id="yearSlider" min="2018" max="2023" value="2023" step="1" /> -->
-            <div id="chartContainer">
-                <h3> Top Attractions（Visitors in 2023）</h3>
-                <canvas id="regionalChart"></canvas>
-            </div>
-            <p id="source" style="margin-top: 2rem; font-size: 0.85rem; color: #888; text-align: center;">
-              Source: 
-              <a href="https://www.visitbritain.org/research-insights/england-visitor-attractions-latest" target="_blank" style="color: #888; text-decoration: underline;">
-                VisitBritain – England Visitor Attractions
-            </a>
-              </a >
-            </p >
+  <div id="panel">   
+    <!-- Region Filter -->
+    <div>
+      <label id="regionlabel">Region: All</label><br>
+      <select id="regionfilter">
+        <option value="All">All</option>
+        <option value="North East">North East</option>
+        <option value="North West">North West</option>
+        <option value="Yorkshire and The Humber">Yorkshire and The Humber</option>
+        <option value="East Midlands">East Midlands</option>
+        <option value="West Midlands">West Midlands</option>
+        <option value="East of England">East of England</option>
+        <option value="London">London</option>
+        <option value="South East">South East</option>
+        <option value="South West">South West</option>
+      </select>
     </div>
-    <script>
-        
-        
-//        1. 常量和变量定义&初始化地图和图层（Mapbox）
-        
-        // 初始化地图配置
-        mapboxgl.accessToken = 'pk.eyJ1Ijoia3VuZGk3Nzg4IiwiYSI6ImNtNmkzejF2cjAzaXQyaXM5a290bWZlb3YifQ.m5Puy892HwG64qMAoEd7sA';
-        
-        // 创建地图实例
-        const map = new mapboxgl.Map({
-            container: 'map',
-            // 
-            style: 'mapbox://styles/mapbox/light-v11',
-            center: [-4, 53],  // 初始中心点坐标
-            zoom: 5.9          // 初始缩放级别
-        });
-        
-        // 颜色映射
-        const colorMapping = {
-            'Historic Buildings & Sites': '#8466C6',
-            'Museums & Galleries': '#FFD700',
-            'Natural & Outdoor Attractions': '#F29B7A',
-            'Transport & Industrial Heritage': '#E06AC7',
-            'Industrial & Craft Experiences': '#66D1C3',
-            'Modern Entertainment & Technology': '#A8D8EA',
-            'Other & Miscellaneous': '#B0B9B2'
-        };
 
-         // 初始化图例
+    <!-- Category Filter -->
+    <label id="categorylabel">Category: All</label><br>
+    <select id="categoryFilter">
+      <option value="All">All Categories</option>
+      <option value="Historic Buildings & Sites">Historic Buildings & Sites</option>
+      <option value="Museums & Galleries">Museums & Galleries</option>
+      <option value="Natural & Outdoor Attractions">Natural & Outdoor</option>
+      <option value="Transport & Industrial Heritage">Transport & Industrial</option>
+      <option value="Industrial & Craft Experiences">Industrial & Craft</option>
+      <option value="Modern Entertainment & Technology">Modern Entertainment</option>
+      <option value="Other & Miscellaneous">Other</option>
+    </select>
+
+    <!-- Category Legend -->
+    <div id="legend">
+      <h3>Attraction Categories</h3>
+      <div id="legend-content"></div>
+    </div>
+
+    <!-- Visitor Count Size Legend -->
+    <div id="sizelegend">
+      <h3>Visitor Count</h3>
+      <div id="sizelegend-content"></div>
+    </div>
+  </div>
+
+  <div id="chartContainer">
+    <h3>Top Attractions（Visitors in 2023）</h3>
+    <canvas id="regionalChart"></canvas>
+  </div>
+
+  <!-- Data Source -->
+  <p id="source" style="margin-top: 2rem; font-size: 0.85rem; color: #888; text-align: center;">
+    Source: 
+    <a href="https://www.visitbritain.org/research-insights/england-visitor-attractions-latest" target="_blank" style="color: #888; text-decoration: underline;">
+      VisitBritain – England Visitor Attractions
+    </a>
+  </p>
+</div>
+    <script>
+// 1. Initialization settings
+mapboxgl.accessToken = 'pk.eyJ1Ijoia3VuZGk3Nzg4IiwiYSI6ImNtNmkzejF2cjAzaXQyaXM5a290bWZlb3YifQ.m5Puy892HwG64qMAoEd7sA';
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v11',
+    center: [-4, 53],
+    zoom: 5.9
+});
+
+// 2. Constant definition
+const colorMapping = {
+    'Historic Buildings & Sites': '#8466C6',
+    'Museums & Galleries': '#FFD700',
+    'Natural & Outdoor Attractions': '#F29B7A',
+    'Transport & Industrial Heritage': '#E06AC7',
+    'Industrial & Craft Experiences': '#66D1C3',
+    'Modern Entertainment & Technology': '#A8D8EA',
+    'Other & Miscellaneous': '#B0B9B2'
+};
+
+// 3. Global Variables
+let fullMapBounds = null;
+let allAttractions = [];
+let hoveredPointId = null;
+let hoverPopup = null;
+let regionalChart = null;
+
+// 4. Map Initialization
+map.on('load', () => {
+    // Add data sources
+    map.addSource('attractions', {
+        type: 'geojson',
+        data: 'data/attractions_filtered.geojson',
+        generateId: true
+    });
+
+    map.addSource('regions', {
+        type: 'geojson',
+        data: 'data/simplified_england.geojson'
+    });
+
+    // Add layers
+    map.addLayer({
+        id: 'regions-layer-border',
+        type: 'line',
+        source: 'regions',
+        paint: {
+            'line-color': '#999999',
+            'line-width': 1,
+            'line-opacity': 0.6,
+            'line-dasharray': [4, 2]
+        }
+    });
+
+    map.addLayer({
+        id: 'attractions-layer',
+        type: 'circle',
+        source: 'attractions',
+        paint: {
+            'circle-radius': [
+                'case',
+                ['!', ['has', 'Visitors 2023']], 3,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 1000], 3,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 10000], 5,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 100000], 7,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 500000], 9,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 1000000], 11,
+                ['<', ['to-number', ['get', 'Visitors 2023']], 2000000], 14, 
+                ['>=', ['to-number', ['get', 'Visitors 2023']], 4000000], 20,
+                2
+            ],
+            'circle-opacity': 0.7,
+            'circle-color': [
+                'match',
+                ['get', 'Main_Category'],
+                ...Object.entries(colorMapping).flat(),
+                '#cccccc'
+            ]
+        }
+    });
+    
+    // Legend
+// Initialize the legend
             const legendContent = document.getElementById('legend-content');
             Object.entries(colorMapping).forEach(([category, color]) => {
                 const legendItem = document.createElement('div');
@@ -249,104 +295,14 @@ html, body {
                 legendContent.appendChild(legendItem);
             });
 
-        let fullMapBounds = null;
-        let allAttractions = [];
-        let hoveredPointId = null;
-        let hoverPopup = null;
-        
-        
-// ===================== 新增代码部分 =====================
-let regionalChart = null;
-
-// ===================== 2. 加载地图与数据 =====================
-map.on('load', () => {
-  // 添加 GeoJSON 数据源
-  map.addSource('attractions', {
-    type: 'geojson',
-    data: 'data/attractions_filtered.geojson',
-    generateId: true // 支持 feature state 操作
-  });
-    
-//      添加区域数据源
-           map.addSource('regions', {
-               type: 'geojson',
-               data: 'data/simplified_england.geojson' // 替换为你的数据路径
-           });
-           
-           // 添加边界线图层
-           map.addLayer({
-               id: 'regions-layer-border',
-               type: 'line',
-               source: 'regions',
-               paint: {
-                   'line-color': '#999999',  // 设置边界颜色
-                   'line-width': 1,// 设置边界线的宽度
-                    'line-opacity': 0.6,  // 设置边界线的透明度
-                    'line-dasharray': [4, 2]  // 4像素线 + 2像素间隔
-               }
-           });
-
-  // 添加图层显示景点
-  map.addLayer({
-    id: 'attractions-layer',
-    type: 'circle',
-    source: 'attractions',
-    paint: { 
-'circle-radius': [
-  'case',
-  ['!', ['has', 'Visitors 2023']], 3,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 1000], 4,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 10000], 5,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 50000], 7,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 200000], 9,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 1000000], 14,
-  ['<', ['to-number', ['get', 'Visitors 2023']], 2000000], 20, 
-  ['>=', ['to-number', ['get', 'Visitors 2023']], 4000000], 30,
-  2
-],              
-                    'circle-opacity': 0.7,
-                    'circle-color': [
-                        'match',
-                        ['get', 'Main_Category'],
-                        ...Object.entries(colorMapping).flat(),
-                        '#cccccc'  // 默认颜色
-                    ]
-    }
-  });
-
-        // 记录完整地图边界，用于后续 reset 缩放
-        map.once('idle', () => {
-          fullMapBounds = map.getBounds();
-        });
-
-        // 异步加载数据用于过滤逻辑（非图层部分）
-        fetch('data/attractions_filtered.geojson')
-          .then(res => res.json())
-          .then(data => {
-            allAttractions = data.features;
-            // 添加延迟确保DOM就绪（仅用于调试）
-          setTimeout(() => {
-            updateRegionalChart('All');
-            initApp();
-          }, 100);
-          });
-          
-          // 新增：初始化时渲染全国数据
-            updateRegionalChart('All'); 
-
-        // 启动初始交互逻辑（图例/按钮/筛选等）
-        initApp();
-      });
-
-      // 图例
       const radiusMapping = [
-  { label: '< 1k', value: 4 },
+  { label: '< 1k', value: 3 },
   { label: '1k–10k', value: 5 },
-  { label: '10k–50k', value: 7 },
-  { label: '50k–200k', value: 9 },
-  { label: '200k–1M', value: 14 },
-  { label: '1M–2M', value: 20 },
-  { label: '> 4M', value: 30 }
+  { label: '10k–100k', value: 7 },
+  { label: '100k–500k', value: 9 },
+  { label: '500k–1M', value: 11 },
+  { label: '1M–2M', value: 14 },
+  { label: '> 4M', value: 20 }
 ];
 const sizeLegend = document.getElementById('sizelegend-content');
 
@@ -366,313 +322,231 @@ radiusMapping.forEach(({ label, value }) => {
     sizeLegend.appendChild(legendItem);
 });
 
-// ===================== 3. 设置筛选功能 =====================
-function setupEventListeners() {
-  document.getElementById('regionfilter').addEventListener('change', applyFilters);
-  document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+fetch('data/attractions_filtered.geojson')
+    .then(res => res.json())
+    .then(data => {
+        allAttractions = data.features;
+        applyFilters(); 
+        
+        map.once('idle', () => {
+            fullMapBounds = map.getBounds();
+            initApp();
+            initLegends();
+        });
+    });
+});
+
+// 5. Filter functionality
+function applyFilters() {
+    const selectedRegion = document.getElementById('regionfilter').value;
+    const selectedCategory = document.getElementById('categoryFilter').value;
+
+    // Update UI labels
+    document.getElementById('regionlabel').textContent = `Region: ${selectedRegion}`;
+    document.getElementById('categorylabel').textContent = `Category: ${selectedCategory}`;
+
+    // Build filters
+    const filters = [];
+    if (selectedRegion !== 'All') filters.push(['==', ['get', 'Region'], selectedRegion]);
+    if (selectedCategory !== 'All') filters.push(['==', ['get', 'Main_Category'], selectedCategory]);
+    
+    // Apply map filters
+    map.setFilter('attractions-layer', filters.length ? ['all', ...filters] : null);
+
+    // Handle map zoom
+    handleMapZoom(selectedRegion, filters);
+
+    // Update chart
+    updateRegionalChart(
+        allAttractions.filter(f => 
+            (selectedRegion === 'All' || f.properties.Region === selectedRegion) &&
+            (selectedCategory === 'All' || f.properties.Main_Category === selectedCategory)
+        )
+    );
 }
 
-// 筛选逻辑
-function applyFilters() {
-  const selectedRegion = document.getElementById('regionfilter').value;
-  const selectedCategory = document.getElementById('categoryFilter').value;
-
-  // 更新标签文字
-  document.getElementById('regionlabel').textContent = 'Region: ' + selectedRegion;
-  document.getElementById('categorylabel').textContent = 'Category: ' + selectedCategory;
-
-  // 构造过滤器数组
-  let filters = [];
-  if (selectedRegion !== 'All') {
-    filters.push(['==', ['get', 'Region'], selectedRegion]);
-  }
-  if (selectedCategory !== 'All') {
-    filters.push(['==', ['get', 'Main_Category'], selectedCategory]);
-  }
-
-  // 应用过滤器到地图图层
-  let finalFilter = null;
-  if (filters.length === 1) {
-    finalFilter = filters[0];
-  } else if (filters.length > 1) {
-    finalFilter = ['all', ...filters];
-  }
-  console.log("Applied Filter:", finalFilter);
-  map.setFilter('attractions-layer', finalFilter);
-
-
-  // test 
-   // 视图自动缩放至所选区域
-   if (selectedRegion !== 'All') {
-    // 检查数据源状态
-    if (!map.getSource('attractions')) {
-      console.error('数据源未初始化');
-      return;
-    }
-    if (!map.isSourceLoaded('attractions')) {
-      console.error('数据尚未加载完成');
-      return;
+// Modify handleMapZoom function for empty region selection:
+function handleMapZoom(selectedRegion, filters) {
+    if (selectedRegion === 'All') {
+        // Add delay to ensure map fully loads
+        setTimeout(() => map.fitBounds(fullMapBounds, { padding: 40 }), 100);
+        return;
     }
 
-    // 查询全量数据
     const features = map.querySourceFeatures('attractions', {
-      filter: ['==', ['get', 'Region'], selectedRegion],
-      validate: false // 关键修改
+        filter: filters.length ? ['all', ...filters] : null,
+        validate: false
     });
 
-    console.log(`[DEBUG] 区域 ${selectedRegion} 查询到要素数量:`, features.length);
+    if (features.length === 0) {
+        map.fitBounds(fullMapBounds, { padding: 40 });
+        return;
+    }
 
-    if (features.length > 0) {
-      const bounds = new mapboxgl.LngLatBounds();
-      features.forEach(f => {
-        if (f.geometry?.coordinates) {
-          bounds.extend(f.geometry.coordinates);
-        }
-      });
-      
-      if (!bounds.isEmpty()) {
+    const bounds = features.reduce((acc, f) => {
+        if (f.geometry?.coordinates) acc.extend(f.geometry.coordinates);
+        return acc;
+    }, new mapboxgl.LngLatBounds());
+
+    if (!bounds.isEmpty()) {
         map.fitBounds(bounds, { 
-          padding: 40, 
-          maxZoom: 9,
-          duration: 1000 // 添加平滑过渡
+            padding: 40, 
+            maxZoom: 9,
+            duration: 1000
         });
-      } else {
-        console.warn('边界计算失败：无有效坐标');
-      }
-    } else {
-      console.warn('该区域无数据');
-      // 可选：重置视图或显示提示
-      map.fitBounds(fullMapBounds, { padding: 40 });
     }
-  } else {
-    map.fitBounds(fullMapBounds, { padding: 40 });
-  }
-
-  // 更新区域图表
-  updateRegionalChart(selectedRegion);
-}
-  
-
-// ===================== 4. 悬停与弹窗 =====================
-function handleFeatureHover(e) {
-  if (e.features.length > 0) {
-    // 取消之前的高亮状态
-    if (hoveredPointId !== null) {
-      map.setFeatureState(
-        { source: 'attractions', id: hoveredPointId },
-        { hover: false }
-      );
-    }
-
-    // 设置当前要素高亮状态
-    hoveredPointId = e.features[0].id;
-    map.setFeatureState(
-      { source: 'attractions', id: hoveredPointId },
-      { hover: true }
-    );
-
-    // 移除旧的弹窗
-    if (hoverPopup) {
-      hoverPopup.remove();
-      hoverPopup = null;
-    }
-
-    // 创建新弹窗
-    const feature = e.features[0];
-    hoverPopup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false })
-      .setLngLat(e.lngLat)
-      // .setHTML(`<strong>${feature.properties.Name}</strong><br>${feature.properties.Main_Category}`)
-      .setHTML(`
-      <div style="font-size: 12px">
-        <strong>${feature.properties.Attraction || "Unknown"}</strong><br>
-        Category: ${feature.properties.Main_Category || "N/A"}<br>
-        Visitors: ${
-          feature.properties["Visitors 2023"]
-            ? Number(feature.properties["Visitors 2023"]).toLocaleString()
-            : "N/A"
-        }
-      </div>
-    `)
-      .addTo(map);
-  }
 }
 
-// ===================== 5. 启动函数入口 =====================
-function initApp() {
-  setupEventListeners();
-
-  // 添加悬停事件
-  map.on('mousemove', 'attractions-layer', handleFeatureHover);
-  map.on('mouseleave', 'attractions-layer', () => {
-    if (hoveredPointId !== null) {
-      map.setFeatureState(
-        { source: 'attractions', id: hoveredPointId },
-        { hover: false }
-      );
-    }
-    hoveredPointId = null;
-
-    if (hoverPopup) {
-      hoverPopup.remove();
-      hoverPopup = null;
-    }
-  });
-}
-
-     
-        // ===================== 修改后的代码 =====================
-// 创建或更新区域柱状图（增强版）
-function updateRegionalChart(region) {
-    // 获取当前区域数据
-    const features = region === 'All' ? 
-        allAttractions : 
-        map.querySourceFeatures('attractions', {
-            filter: ['==', ['get', 'Region'], region],
-            validate: false // 关键修改
-        });
-
-    // 数据去重处理（使用Map保证唯一性）
+// 6. Chart functionality
+function updateRegionalChart(filteredFeatures) {
+    // Data preprocessing
     const attractionMap = new Map();
     
-    features.forEach(f => {
-        // 获取规范化名称和游客数
+    filteredFeatures.forEach(f => {
         const rawName = f.properties.Attraction || f.properties.Name;
-        const name = normalizeName(rawName) || "Unnamed Attraction";
         const visitors = parseVisitors(f.properties['Visitors 2023']);
-        
-        // 有效数据处理
-        if (visitors !== null) {
-            // 保留游客量最大的记录
-            if (!attractionMap.has(name) || attractionMap.get(name).visitors < visitors) {
-                attractionMap.set(name, {
-                    displayName: rawName || "Unnamed Attraction", // 保留原始显示名称
-                    visitors: visitors
-                });
-            }
+        if (!visitors) return;
+
+        const name = normalizeName(rawName);
+        if (!name) return;
+
+        const current = attractionMap.get(name);
+        if (!current || visitors > current.visitors) {
+            attractionMap.set(name, {
+                displayName: rawName,
+                visitors: visitors
+            });
         }
     });
 
-    // 生成处理后的数据
-    const processedData = Array.from(attractionMap.values())
+    // Prepare chart data
+    const chartData = Array.from(attractionMap.values())
         .sort((a, b) => b.visitors - a.visitors)
         .slice(0, 10);
 
-    // 销毁旧图表
+    // Update chart
     const ctx = document.getElementById('regionalChart').getContext('2d');
-    if (regionalChart) {
-        regionalChart.destroy();
-    }
+    if (regionalChart) regionalChart.destroy();
 
-    // 创建新图表（优化版）
     regionalChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: processedData.map(d => truncateLabel(d.displayName, 25)),  // attraction 名作为 X 轴标签
-        datasets: [{
-            label: 'Visitors (2023)',
-            data: processedData.map(d => d.visitors),
-            backgroundColor: '#9B7FDC',
-            borderColor: '#8466C6',
-            borderWidth: 1,
-            barThickness: 20,
-            borderRadius: 4
-        }]
-    },
-    options: {
+        type: 'bar',
+        data: {
+            labels: chartData.map(d => truncateLabel(d.displayName, 25)),
+            datasets: [{
+                label: 'Visitors (2023)',
+                data: chartData.map(d => d.visitors),
+                backgroundColor: '#9B7FDC',
+                borderColor: '#8466C6',
+                borderWidth: 1,
+                barThickness: 20,
+                borderRadius: 4
+            }]
+        },
+        options: getChartOptions()
+    });
+}
+
+// 7. Utility functions
+function normalizeName(name) {
+    return name?.toString().trim().toLowerCase()
+        .replace(/\s+/g, ' ')
+        .replace(/[^\w\s]/g, '')
+        .replace(/\b(the|a|an)\b/gi, '') || null;
+}
+
+function parseVisitors(value) {
+    const num = Number(String(value).replace(/[^0-9.]/g, ''));
+    return Number.isFinite(num) ? Math.round(num) : null;
+}
+
+function truncateLabel(str, max) {
+    str = str?.toString().trim() || '';
+    const lastSpace = str.lastIndexOf(' ', max);
+    return str.length > max ? 
+        (lastSpace > max*0.7 ? str.slice(0, lastSpace)+"..." : str.slice(0, max)+"...") : 
+        str;
+}
+
+function getChartOptions() {
+    return {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
             x: {
-                title: {
-                    display: true,
-                    text: 'Attractions',
-                    padding: 5
-                },
-                ticks: {
-                    autoSkip: false,
-                    maxRotation: 45,
-                    minRotation: 30
-                }
+                title: { display: true, text: 'Attractions', padding: 5 },
+                ticks: { autoSkip: false, maxRotation: 45, minRotation: 30 }
             },
             y: {
-    beginAtZero: true,
-    title: {
-        display: true,
-        text: 'Visitor Count (millions)',
-        padding: 10
-    },
-    ticks: {
-        callback: value => {
-            if (value >= 1_000_000) return (value / 1_000_000).toFixed(1) + 'M';
-            if (value >= 1_000) return (value / 1_000).toFixed(1) + 'K';
-            return value;
-        }
-    }
-}
+                beginAtZero: true,
+                title: { display: true, text: 'Visitor Count', padding: 10 },
+                ticks: {
+                    callback: v => v >= 1e6 ? `${(v/1e6).toFixed(1)}M` : 
+                                  v >= 1e3 ? `${(v/1e3).toFixed(1)}K` : v
+                }
+            }
         },
         plugins: {
             legend: { display: false },
             tooltip: {
                 backgroundColor: 'rgba(0,0,0,0.8)',
-                titleFont: { size: 14 },
-                bodyFont: { size: 12 },
                 callbacks: {
-                    title: context => processedData[context[0].dataIndex].displayName, // 展示原始名称
-                    label: context => `${context.parsed.y.toLocaleString()} visitors`  // 注意从 x 改成 y
+                    title: ctx => ctx.chart.data.labels[ctx[0].dataIndex],
+                    label: ctx => `${ctx.parsed.y.toLocaleString()} visitors`
                 }
             }
         }
-    }
-});
+    };
 }
 
-// 辅助函数：名称规范化
-function normalizeName(name) {
-    if (!name) return null;
-    return name
-        .toString()
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, ' ')   // 合并多余空格
-        .replace(/[^\w\s]/g, '') // 移除特殊符号
-        .replace(/\b(the|a|an)\b/gi, ''); // 移除冠词
+// 8. Initialize application
+function initApp() {
+    // Event listeners
+    document.getElementById('regionfilter').addEventListener('change', applyFilters);
+    document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+
+    // Hover interaction
+    map.on('mousemove', 'attractions-layer', e => {
+        if (!e.features.length) return;
+        
+        // Highlight handling
+        if (hoveredPointId !== null) {
+            map.setFeatureState(
+                { source: 'attractions', id: hoveredPointId },
+                { hover: false }
+            );
+        }
+        hoveredPointId = e.features[0].id;
+        map.setFeatureState(
+            { source: 'attractions', id: hoveredPointId },
+            { hover: true }
+        );
+
+        // Popup handling
+        if (hoverPopup) hoverPopup.remove();
+        const { properties, geometry } = e.features[0];
+        hoverPopup = new mapboxgl.Popup({ closeButton: false })
+            .setLngLat(geometry.coordinates)
+            .setHTML(`
+                <div class="popup-content">
+                    <strong>${properties.Attraction || "Unknown"}</strong>
+                    <div>Category: ${properties.Main_Category || "N/A"}</div>
+                    <div>Visitors: ${properties["Visitors 2023"]?.toLocaleString() || "N/A"}</div>
+                </div>
+            `)
+            .addTo(map);
+    });
+
+    map.on('mouseleave', 'attractions-layer', () => {
+        if (hoveredPointId !== null) {
+            map.setFeatureState(
+                { source: 'attractions', id: hoveredPointId },
+                { hover: false }
+            );
+            hoveredPointId = null;
+        }
+        if (hoverPopup) hoverPopup.remove();
+    });
 }
-
-/// 辅助函数：精确解析游客数量（修复小数点问题）
-function parseVisitors(value) {
-    if (!value) return null;
-
-    // 处理特殊字符串
-    const strValue = value.toString().trim();
-    if (/closed|not available/i.test(strValue)) return null;
-
-    // 保留数字和小数点
-    const numericString = strValue
-        .replace(/,/g, '')       // 移除千分位逗号
-        .replace(/[^0-9.]/g, ''); // 保留数字和小数点
-
-    // 处理无效格式（如多个小数点）
-    if ((numericString.match(/\./g) || []).length > 1) return null;
-
-    // 转换为浮点数并四舍五入
-    const num = parseFloat(numericString);
-    return isNaN(num) ? null : Math.round(num);
-}
-
-// 辅助函数：智能标签截断
-function truncateLabel(str, maxLength) {
-    if (!str) return '';
-    str = str.toString().trim();
-    
-    // 优先在空格处截断
-    const lastSpaceIndex = str.lastIndexOf(' ', maxLength);
-    if (lastSpaceIndex > maxLength * 0.7) {
-        return str.substring(0, lastSpaceIndex) + "...";
-    }
-    return str.length > maxLength ? 
-        str.substring(0, maxLength) + "..." : 
-        str;
-}
-    </script>
+</script>
 </body>
 </html>

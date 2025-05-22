@@ -17,8 +17,6 @@
     .container {
   display: flex;
   height: 100vh;
-  /* margin-top: 30px; 距离页面顶部留白 */
-  /* padding-top: 30px; */
 }
       
       .left-panel {
@@ -27,7 +25,7 @@
   gap: 20px;
   align-items: center;
   
-  padding: 100px 50px 80px 100px; /* 增加顶部和左侧内边距 */
+  padding: 100px 50px 80px 100px; 
 }
 
   .chart-block {
@@ -39,15 +37,15 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  flex-wrap: wrap; /* 允许换行，但在宽度足够时并排 */
+  flex-wrap: wrap; 
 }
 
   .bottom-charts .chart-block {
   flex: 1 1 40%;
-  max-width: 400px;  /* 或者改成固定宽度 350px */
+  max-width: 400px; 
   min-width: 280px;
   display: flex;
-  justify-content: center;  /* 图表水平居中 */
+  justify-content: center;  
 }
 
 .bottom-charts .chart-block canvas {
@@ -62,7 +60,7 @@
     height: auto !important;
   }
   
-      /* 缩小 chart2 和 chart3 的 canvas */
+     
 .bottom-charts .chart-block canvas {
   max-width: 90%;
   max-height: 240px;
@@ -72,7 +70,7 @@
 
 .right-panel {
   flex: 1;
-  padding: 10px 100px 100px 20px; /* 左50，上下50，右100，加大右边距 */
+  padding: 10px 100px 100px 20px; 
   overflow-y: hidden;
   height: 100%;
 
@@ -101,86 +99,90 @@
 </head>
 <body>
   <div class="container">
-    <!-- 图表展示区 -->
+  <!-- Chart Display Section -->
   <div class="left-panel">
-  <!-- Top chart -->
-  <div class="chart-block">
-    <canvas id="chart1"></canvas>
+    <!-- Top Chart -->
+    <div class="chart-block">
+      <canvas id="chart1"></canvas>
+    </div>
+
+    <!-- Two Bottom Charts Side-by-Side -->
+    <div class="bottom-charts">
+      <div class="chart-block">
+        <canvas id="chart2"></canvas>
+      </div>
+      <div class="chart-block">
+        <canvas id="chart3"></canvas>
+      </div>
+    </div>
+
+    <p id="source" style="margin-top: 2rem; font-size: 0.85rem; color: #888; text-align: center;">
+      Source:
+      <a href="https://www.visitbritain.org/research-insights/england-visitor-attractions-latest" 
+         target="_blank" 
+         style="color: #888; text-decoration: underline;">
+        VisitBritain – England Visitor Attractions
+      </a>
+    </p>
   </div>
 
-  <!-- Bottom two charts side-by-side -->
-  <div class="bottom-charts">
-    <div class="chart-block">
-      <canvas id="chart2"></canvas>
-    </div>
-    <div class="chart-block">
-      <canvas id="chart3"></canvas>
+  <!-- Text Explanation Section -->
+  <div class="right-panel">
+    <div class="chart-text1">
+      <!-- Title 1 -->
+      <h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-bottom: 10px;">
+        Focus on Central London
+      </h2>
+
+      <p>
+        London not only has the highest attraction density, but also far surpasses other regions in total visitor numbers.
+      </p>
+
+      <p>
+        According to the previous interactive map, several boroughs in central London have a high concentration of sites, 
+        making them ideal locations for urban walking and exploration.
+      </p>
+
+      <p>
+        <strong style="color: #8466C6;">
+          For these reasons, we have chosen central London as the focus of our in-depth study on customized travel experiences!
+        </strong>
+      </p>
+
+      <!-- Title 2 -->
+      <h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-top: 30px; margin-bottom: 10px;">
+        Find Your Own Trip!
+      </h2>
+
+      <p>From the chart, we can see two key patterns:</p>
+      <ul>
+        <li style="font-size: 13px;">
+          A highly concentrated <strong>"head effect"</strong> — the top 10 attractions alone attract over 70% of all visitors.
+        </li>
+        <li style="font-size: 13px;">
+          <strong>Museums and galleries</strong> and <strong>historic buildings and sites</strong> together account for 91.5% of total visitors.
+        </li>
+      </ul>
+
+      <p>
+        Some iconic urban attractions are missing from official statistics, such as the 
+        <strong>West End theatres</strong> and <strong>Harrods</strong>. 
+        Though not classified as traditional tourist sites, they play a vital role in shaping London’s diverse appeal.
+      </p>
+
+      <p>
+        Overall, visitor preferences are not only concentrated on a few well-known spots but also show a strong tendency toward similar types of attractions.
+      </p>
+
+      <p>
+        This raises an important question: <br>
+        <strong style="color: #8466C6;">
+          How can visitors move beyond the “information cocoon” of mainstream recommendations and discover the city’s lesser-known, yet equally enriching, hidden gems?
+        </strong>
+      </p>
     </div>
   </div>
-
-  <p id="source" style="margin-top: 2rem; font-size: 0.85rem; color: #888; text-align: center;">
-    Source: 
-    <a href="https://www.visitbritain.org/research-insights/england-visitor-attractions-latest" target="_blank" style="color: #888; text-decoration: underline;">
-      VisitBritain – England Visitor Attractions
-  </a>
-    </a >
-  </p >
 </div>
-
-    <!-- 文字说明区 -->
-    <div class="right-panel">
-      <div class="chart-text1">
-         <!-- 第一个标题 -->
-<h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-bottom: 10px;">
-  Focus on Central London
-</h2>
-
-<p>
-  London not only has the highest attraction density, but also far surpasses other regions in total visitor numbers.
-</p>
-
-<p>
-  According to the previous interactive map, several boroughs in central London have a high concentration of sites, making them ideal locations for urban walking and exploration.
-</p>
-
-<p>
-  <strong style="color: #8466C6;">For these reasons, we have chosen central London as the focus of our in-depth study on customized travel experiences!</strong>
-</p>
-
-<!-- 第二个标题 -->
-<h2 style="font-family: 'Merriweather', serif; font-size: 30px; color: #333; margin-top: 30px; margin-bottom: 10px;">
-  Find Your Own Trip!
-</h2>
-
-<p>
-  From the chart, we can see two key patterns:
-  <ul>
-    <li style="font-size: 13px;">A highly concentrated <strong>"head effect"</strong> — the top 10 attractions alone attract over 70% of all visitors.</li>
-    <li style="font-size: 13px;"><strong>Museums and galleries</strong> and <strong>historic buildings and sites</strong> together account for 91.5% of total visitors.</li>
-  </ul>
-</p>
-
-<p>
-  Some iconic urban attractions are missing from official statistics, such as the <strong>West End theatres</strong> and <strong>Harrods</strong>. 
-  Though not classified as traditional tourist sites, they play a vital role in shaping London’s diverse appeal.
-</p>
-
-<p>
-  Overall, visitor preferences are not only concentrated on a few well-known spots but also show a strong tendency toward similar types of attractions.
-</p>
-
-<p>
-  This raises an important question: 
-  <br> 
-  <strong style="color: #8466C6;">How can visitors move beyond the “information cocoon” of mainstream recommendations and discover the city’s lesser-known, yet equally enriching, hidden gems?</strong>
-</p>
-            
-                
-       
-      
-    </div>
-  </div>
-    
   
 <script>
  
@@ -229,7 +231,7 @@
             text: 'Attraction Density and Total Visitors by Region (2023)'
           },
 //          legend: {
-//            display: false  // 👈 关闭图例显示
+//            display: false  // 
 //          }
         },
         scales: {
@@ -271,7 +273,6 @@
 });
 
     
-// 读取 top10_vs_others.csv 并绘制饼图
 Papa.parse('top10_vs_others.csv', {
   download: true,
   header: true,
@@ -279,7 +280,6 @@ Papa.parse('top10_vs_others.csv', {
   complete: function(results) {
     const data = results.data;
 
-    // 提取标签和数据
     const labels = data.map(d => d.Attraction);
     const sizes = data.map(d => d["Visitors 2023"]);
 
@@ -291,17 +291,17 @@ Papa.parse('top10_vs_others.csv', {
         datasets: [{
           data: sizes,
           backgroundColor: [
-  '#A6CEE3',  // 淡蓝
-  '#B2DF8A',  // 淡绿
-  '#FDBF6F',  // 淡橙
-  '#CAB2D6',  // 淡紫
-  '#FFB3B3',  // 粉红
-  '#FFFFB3',  // 淡黄
-  '#B3DE69',  // 青绿
-  '#FCCDE5',  // 粉紫
-  '#D9D9D9',  // 浅灰
-  '#CCEBC5',  // 冷青绿
-  '#BC80BD'   // 柔紫（作为 Others）
+  '#A6CEE3',  
+  '#B2DF8A',  
+  '#FDBF6F',  
+  '#CAB2D6',  
+  '#FFB3B3',  
+  '#FFFFB3',  
+  '#B3DE69',  
+  '#FCCDE5',  
+  '#D9D9D9',  
+  '#CCEBC5',  
+  '#BC80BD'   
 ]
         }]
       },
@@ -377,7 +377,7 @@ Papa.parse('top10_vs_others.csv', {
             }
           },
           legend: {
-            display: false  // 👈 去掉图例
+            display: false 
           }
         }
       }
