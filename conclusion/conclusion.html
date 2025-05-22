@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Conclusion Box</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      background: url('map.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 2rem;
+      width: 900px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    .box h2,
+    .box h3 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    .box h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 80px;
+      color: #f0f0f0;
+    }
+
+    .box h3 {
+      font-family: 'Merriweather', serif;
+      font-size: 20px;
+      color: #FFD700;
+    }
+
+    .box p {
+      text-align: left;
+      color: #f0f0f0;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Conclusion</h2>
+    <h3>Personalized Urban Tourism Network Reconstruction</h3>
+    
+    <p><strong>In conclusion,</strong> our study finds that London’s tourism sector has demonstrated strong resilience and a rapid recovery following the pandemic, reaffirming the city’s enduring appeal as a premier global destination.</p>
+    <p>Tourists tend to concentrate on a limited number of iconic landmarks and relatively homogeneous categories of attractions. This behavior is largely shaped by shared information sources and group decision-making dynamics, which causes a few popular sites to dominate, reducing experiential diversity and discouraging broader exploration.</p>
+    <p>To address these challenges, we developed a method to reconstruct the urban tourism network based on visitor interests. The resulting visualizations effectively support active user exploration and provide a deeper understanding of tourism structures in England. They help users make precise destination and route choices tailored to their personal preferences, even amid overwhelming and repetitive information.</p>
+    <p>This visualization project enables personalized route recommendations through interactive interfaces, allowing travelers to enjoy more meaningful and customized experiences. At the same time, it offers valuable insights to urban planners and tourism managers, helping them better balance tourist flows and foster a more inclusive, resilient tourism environment.</p>
+  </div>
+</body>
+</html>
