@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Travel in London</title>
+  <title>Good Trip in London</title>
 
-  <!-- 引入 fullPage 样式 -->
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css" />
-  <!-- 你自己的样式 -->
+
   <link rel="stylesheet" href="assets/css/style.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
       <div class="home-overlay">
         <h1 class="home-title-main">Good Trip in London<span class="handwriting"></span></h1>
         <!-- <h2 class="home-subtitle">Discover culture, history, and hidden gems.</h2> -->
-        <a href="#intro"><button class="home-explore-btn">Let’s take off!</button></a>
+        <a href="#intro"><button class="home-explore-btn">Let's take off!</button></a>
         
       </div>  
     </div>
@@ -75,7 +75,7 @@
       <iframe src="https://yuli61.github.io/Group_visual/london_travel_guidepage/interaction_travel_page.html" frameborder="0"></iframe>
     </div>
     <div class="section" data-anchor="conclusion">
-      <iframe src="https://yuli61.github.io/Group_visual/conclusion.html" frameborder="0"></iframe>
+      <iframe src="https://yuli61.github.io/Group_visual/conclusion/conclusion.html" frameborder="0"></iframe>
     </div>    
     <div class="section" data-anchor="team">
       <iframe src="team/index.html" frameborder="0"></iframe>
@@ -114,7 +114,7 @@
       const activeLink = document.querySelector(`.nav-link[href="#${currentAnchor}"]`);
       if (activeLink) activeLink.classList.add('active');
 
-      const lightSections = ['home'];
+      const lightSections = ['home','conclusion'];
       const navbar = document.querySelector('.navbar');
       if (lightSections.includes(currentAnchor)) {
         navbar.classList.add('dark');
