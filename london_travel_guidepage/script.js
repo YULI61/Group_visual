@@ -33,19 +33,17 @@ function appendBubble(role, text) {
 }
 
 
-// 显示一条 assistant 消息
 function showAssistantLine(callback) {
   if (currentIndex < chatData.length && chatData[currentIndex].role === 'assistant') {
     appendBubble('assistant', chatData[currentIndex].text);
     currentIndex++;
-    setTimeout(callback, 1000); // 下一条延迟 1 秒
+    setTimeout(callback, 1000); 
   } else {
-    callback(); // 没有更多 assistant 时，直接回调
+    callback();
   }
 }
 
 
-// 一次显示多条 assistant，直到遇到 user
 function showAssistantUntilNextUser() {
   if (currentIndex >= chatData.length) return;
 
@@ -55,7 +53,7 @@ function showAssistantUntilNextUser() {
     } else if (chatData[currentIndex] && chatData[currentIndex].role === 'user') {
       const userText = chatData[currentIndex].text;
       userInput.value = userText;
-      userInput.disabled = true; // 保持输入不可编辑
+      userInput.disabled = true; 
       replyBtn.disabled = false;
     }
   };
@@ -63,7 +61,7 @@ function showAssistantUntilNextUser() {
   runNext();
 }
 
-// 初始化只显示第一条 assistant
+
 window.addEventListener('load', () => {
   showAssistantLine(() => {
     const userText = chatData[currentIndex].text;
@@ -75,10 +73,10 @@ window.addEventListener('load', () => {
   });
 });
 
-// 点击“回复”按钮
+
 replyBtn.addEventListener('click', () => {
   appendBubble('user', userInput.value);
-  currentIndex++; // 跳过 user 消息
+  currentIndex++; 
   userInput.value = '';
   userInput.disabled = true;
   replyBtn.disabled = true;
@@ -93,11 +91,9 @@ function startGuide() {
   document.getElementById('guide-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-//滚动逻辑
+
   function scrollToTop() {
-    // ✅ 将 guide-section 隐藏
     document.getElementById('guide-section').style.display = 'none';
 
-    // ✅ 滚动回聊天区域
     document.getElementById('chat-panel').scrollIntoView({ behavior: 'smooth' });
   }

@@ -40,8 +40,8 @@ body, html {
   padding: 12px 16px;
   border-radius: 15px;
   margin-bottom: 10px;
-  max-width: 80%;         /* 限制气泡宽度为 80% */
-  word-wrap: break-word;  /* 防止文字溢出 */
+  max-width: 80%;        
+  word-wrap: break-word;  
 }
 
 .bubble.visible {
@@ -50,21 +50,20 @@ body, html {
 }
 
 
-/* Lucy（左侧气泡） */
 .bubble.assistant {
   background-color: #ffffff;
   color: #333333;
-  align-self: flex-start; /* 靠左 */
+  align-self: flex-start; 
   text-align: left;
   border-top-left-radius: 4px;
   border-top-right-radius: 15px;
 }
 
-/* 用户（右侧气泡） */
+
 .bubble.user {
   background-color: #e28c6a83;
   color: white;
-  align-self: flex-end;   /* 靠右 */
+  align-self: flex-end;   
   text-align: left;
   border-top-right-radius: 4px;
   border-top-left-radius: 15px;
@@ -88,7 +87,7 @@ body, html {
   border-radius: 8px;
   background-color: #f2f2f2;
   color: #555;
-  pointer-events: none; /* 禁用输入行为 */
+  pointer-events: none; 
 }
 
 .input-bar button {
@@ -138,10 +137,8 @@ body, html {
 }
 
 
-/*开始键 */
-
 .start-btn {
-  background-color: #5b3fc1da;   /* 你指定的主色 */
+  background-color: #5b3fc1da;  
   color: white;
   border: none;
   padding: 10px 20px;
@@ -152,21 +149,21 @@ body, html {
 }
 
 .start-btn:hover {
-  background-color: #3f2aa3;  /* 悬停时的颜色 */
+  background-color: #3f2aa3;  
 }
 
 .animation-panel {
   width: 70%;
   background: #ffffff;
   display: flex;
-  flex-direction: column; /* ✅ 垂直排列子元素 */
+  flex-direction: column; 
   align-items: center;
   justify-content: center;
   padding: 20px;
 }
 
 .animation-text {
-  flex: 0 0 40%;            /* 占据上方 40% 高度 */
+  flex: 0 0 40%;            
   width: 100%;
   text-align: center;
   padding: 20px;
@@ -206,7 +203,7 @@ body, html {
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  display: none;        /* ✅ 初始隐藏 */
+  display: none;       
   position: fixed;
   top: 0;
   left: 0;
